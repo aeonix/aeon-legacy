@@ -7,7 +7,14 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
 enable_testing()
 
+function(set_static_flags)
+  if (NOT APPLE)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc -static-libstdc++")
+  endif()
+endfunction(set_static_flags)
+  
 include_directories(src contrib/epee/include external "${CMAKE_BINARY_DIR}/version")
+
 if(APPLE)
   include_directories(SYSTEM /usr/include/malloc)
 endif()
@@ -93,7 +100,7 @@ if(MINGW)
 elseif(APPLE)
   set(Boost_LIBRARIES "${Boost_LIBRARIES}")
 elseif(NOT MSVC)
-  set(Boost_LIBRARIES "${Boost_LIBRARIES};rt")
+  set(Boost_LIBRARIES "${Boost_LIBRARIES};rt;pthread")
 endif()
 
 set(COMMIT_ID_IN_VERSION ON CACHE BOOL "Include commit ID in version")

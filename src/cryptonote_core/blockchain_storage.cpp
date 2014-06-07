@@ -1506,19 +1506,27 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
   TIME_MEASURE_FINISH(target_calculating_time);
   TIME_MEASURE_START(longhash_calculating_time);
   crypto::hash proof_of_work = null_hash;
-  if(!m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height()))
-  {
-    proof_of_work = get_block_longhash(bl, m_blocks.size());
 
-    if(!check_hash(proof_of_work, current_diffic))
-    {
-      LOG_PRINT_L0("Block with id: " << id << ENDL
-        << "have not enough proof of work: " << proof_of_work << ENDL
-        << "nexpected difficulty: " << current_diffic );
-      bvc.m_verifivation_failed = true;
-      return false;
-    }
-  }else
+  // Formerly the code below contained an if loop with the following condition
+  // !m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height())
+  // however, this caused the daemon to not bother checking PoW for blocks
+  // before checkpoints, which is very dangerous behaviour. We moved the PoW
+  // validation out of the next chunk of code to make sure that we correctly
+  // check PoW now.
+  proof_of_work = get_block_longhash(bl, m_blocks.size());
+
+  if(!check_hash(proof_of_work, current_diffic))
+  {
+    LOG_PRINT_L0("Block with id: " << id << ENDL
+      << "have not enough proof of work: " << proof_of_work << ENDL
+      << "nexpected difficulty: " << current_diffic );
+    bvc.m_verifivation_failed = true;
+    return false;
+  }
+
+  // If we're at a checkpoint, ensure that our hardcoded checkpoint hash
+  // is correct.
+  if(m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height()))
   {
     if(!m_checkpoints.check_block(get_current_blockchain_height(), id))
     {
@@ -1527,6 +1535,7 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
       return false;
     }
   }
+
   TIME_MEASURE_FINISH(longhash_calculating_time);
 
   if(!prevalidate_miner_transaction(bl, m_blocks.size()))

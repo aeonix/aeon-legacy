@@ -7,7 +7,6 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "aesb.h"
 #include "common/int-util.h"
 #include "hash-ops.h"
 #include "oaes_lib.h"
@@ -39,6 +38,9 @@
 
 #define U64(x) ((uint64_t *) (x))
 #define R128(x) ((__m128i *) (x))
+
+extern int aesb_single_round(const uint8_t *in, uint8_t*out, const uint8_t *expandedKey);
+extern int aesb_pseudo_round(const uint8_t *in, uint8_t *out, const uint8_t *expandedKey);
 
 #pragma pack(push, 1)
 union cn_slow_hash_state
