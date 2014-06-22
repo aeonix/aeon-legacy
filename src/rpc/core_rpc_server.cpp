@@ -438,9 +438,27 @@ namespace cryptonote
       error_resp.message = "Wrong block blob";
       return false;
     }
-    cryptonote::block_verification_context bvc = AUTO_VAL_INIT(bvc);
-    m_core.handle_incoming_block(blockblob, bvc);
-    if(!bvc.m_added_to_main_chain)
+    
+    // Fixing of high orphan issue for most pools
+    // Thanks Boolberry!
+    block b = AUTO_VAL_INIT(b);
+    if(!parse_and_validate_block_from_blob(blockblob, b))
+    {
+      error_resp.code = CORE_RPC_ERROR_CODE_WRONG_BLOCKBLOB;
+      error_resp.message = "Wrong block blob";
+      return false;
+    }
+
+    // Fix from Boolberry neglects to check block
+    // size, do that with the function below
+    if(!m_core.check_incoming_block_size(blockblob))
+    {
+      error_resp.code = CORE_RPC_ERROR_CODE_WRONG_BLOCKBLOB_SIZE;
+      error_resp.message = "Block bloc size is too big, rejecting block";
+      return false;
+    }
+
+    if(!m_core.handle_block_found(b))
     {
       error_resp.code = CORE_RPC_ERROR_CODE_BLOCK_NOT_ACCEPTED;
       error_resp.message = "Block not accepted";
