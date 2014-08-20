@@ -1,6 +1,32 @@
-// Copyright (c) 2012-2013 The Cryptonote developers
-// Distributed under the MIT/X11 software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2014, AEON, The Monero Project
+// 
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without modification, are
+// permitted provided that the following conditions are met:
+// 
+// 1. Redistributions of source code must retain the above copyright notice, this list of
+//    conditions and the following disclaimer.
+// 
+// 2. Redistributions in binary form must reproduce the above copyright notice, this list
+//    of conditions and the following disclaimer in the documentation and/or other
+//    materials provided with the distribution.
+// 
+// 3. Neither the name of the copyright holder nor the names of its contributors may be
+//    used to endorse or promote products derived from this software without specific
+//    prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+// THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+// PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+// STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+// THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// 
+// Parts of this file are originally copyright (c) 2012-2013 The Cryptonote developers
 
 #pragma once
 #include "cryptonote_protocol/cryptonote_protocol_defs.h"
@@ -137,12 +163,14 @@ namespace wallet_rpc
 
   struct payment_details
   {
+    std::string payment_id;
     std::string tx_hash;
     uint64_t amount;
     uint64_t block_height;
     uint64_t unlock_time;
 
     BEGIN_KV_SERIALIZE_MAP()
+      KV_SERIALIZE(payment_id)
       KV_SERIALIZE(tx_hash)
       KV_SERIALIZE(amount)
       KV_SERIALIZE(block_height)
@@ -158,6 +186,29 @@ namespace wallet_rpc
 
       BEGIN_KV_SERIALIZE_MAP()
         KV_SERIALIZE(payment_id)
+      END_KV_SERIALIZE_MAP()
+    };
+
+    struct response
+    {
+      std::list<payment_details> payments;
+
+      BEGIN_KV_SERIALIZE_MAP()
+        KV_SERIALIZE(payments)
+      END_KV_SERIALIZE_MAP()
+    };
+  };
+
+  struct COMMAND_RPC_GET_BULK_PAYMENTS
+  {
+    struct request
+    {
+      std::vector<std::string> payment_ids;
+      uint64_t min_block_height;
+
+      BEGIN_KV_SERIALIZE_MAP()
+        KV_SERIALIZE(payment_ids)
+        KV_SERIALIZE(min_block_height)
       END_KV_SERIALIZE_MAP()
     };
 
@@ -203,6 +254,28 @@ namespace wallet_rpc
 
       BEGIN_KV_SERIALIZE_MAP()
         KV_SERIALIZE(transfers)
+      END_KV_SERIALIZE_MAP()
+    };
+  };
+
+  //JSON RPC V2
+  struct COMMAND_RPC_QUERY_KEY
+  {
+    struct request
+    {
+      std::string key_type;
+
+      BEGIN_KV_SERIALIZE_MAP()
+        KV_SERIALIZE(key_type)
+      END_KV_SERIALIZE_MAP()
+    };
+
+    struct response
+    {
+      std::string key;
+
+      BEGIN_KV_SERIALIZE_MAP()
+        KV_SERIALIZE(key)
       END_KV_SERIALIZE_MAP()
     };
   };
