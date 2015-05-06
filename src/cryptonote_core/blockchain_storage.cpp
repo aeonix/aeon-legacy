@@ -373,7 +373,7 @@ difficulty_type blockchain_storage::get_difficulty_for_next_block()
     timestamps.push_back(m_blocks[offset].bl.timestamp);
     commulative_difficulties.push_back(m_blocks[offset].cumulative_difficulty);
   }
-  return next_difficulty(timestamps, commulative_difficulties);
+  return next_difficulty(timestamps, commulative_difficulties,m_blocks.size());
 }
 //------------------------------------------------------------------
 bool blockchain_storage::rollback_blockchain_switching(std::list<block>& original_chain, size_t rollback_height)
@@ -507,7 +507,7 @@ difficulty_type blockchain_storage::get_next_difficulty_for_alternative_chain(co
         break;
     }
   }
-  return next_difficulty(timestamps, commulative_difficulties);
+  return next_difficulty(timestamps, commulative_difficulties,bei.height);
 }
 //------------------------------------------------------------------
 bool blockchain_storage::prevalidate_miner_transaction(const block& b, uint64_t height)
@@ -1551,6 +1551,7 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
   if(!check_hash(proof_of_work, current_diffic))
   {
     LOG_PRINT_L0("Block with id: " << id << ENDL
+		 << "height: " << m_blocks.size() << ENDL
       << "have not enough proof of work: " << proof_of_work << ENDL
       << "nexpected difficulty: " << current_diffic );
     bvc.m_verifivation_failed = true;

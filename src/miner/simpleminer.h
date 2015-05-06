@@ -54,6 +54,8 @@ namespace mining
     std::string m_pool_port;
     std::string m_login;
     std::string m_pass;
+    bool m_cryptonight_lite;
+
     epee::net_utils::http::http_simple_client m_http_client;
   };
 }
