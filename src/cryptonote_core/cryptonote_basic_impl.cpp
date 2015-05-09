@@ -58,8 +58,9 @@ namespace cryptonote {
     return CRYPTONOTE_MAX_TX_SIZE;
   }
   //-----------------------------------------------------------------------------------------------
-  bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward) {
-    uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> EMISSION_SPEED_FACTOR;
+  bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, size_t height) {
+    int speed = height < HARDFORK_1_HEIGHT ? HARDFORK_1_OLD_SPEED_FACTOR : EMISSION_SPEED_FACTOR;
+    uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> speed;
 
     //make it soft
     if (median_size < CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE) {

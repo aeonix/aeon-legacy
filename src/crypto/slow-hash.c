@@ -76,7 +76,7 @@
 #define U64(x) ((uint64_t *) (x))
 #define R128(x) ((__m128i *) (x))
 
-#define state_index(x) (((*((uint64_t *)x) >> 4) & (TOTALBLOCKS - 1)) << 4)
+#define state_index(x,div) (((*((uint64_t *)x) >> 4) & (TOTALBLOCKS /(div) - 1)) << 4)
 #if defined(_MSC_VER)
 #if !defined(_WIN64)
 #define __mul() lo = mul128(c[0], b[0], &hi);
@@ -92,7 +92,7 @@
 #endif
 
 #define pre_aes() \
-    j = state_index(a); \
+  j = state_index(a,(light?2:1));		 \
 	_c = _mm_load_si128(R128(&hp_state[j])); \
 	_a = _mm_load_si128(R128(a)); \
  
@@ -101,7 +101,7 @@
 	_mm_store_si128(R128(c), _c); \
 	_b = _mm_xor_si128(_b, _c); \
 	_mm_store_si128(R128(&hp_state[j]), _b); \
-	j = state_index(c); \
+	j = state_index(c,(light?2:1));		 \
 	p = U64(&hp_state[j]); \
 	b[0] = p[0]; b[1] = p[1]; \
 	__mul(); \
@@ -321,7 +321,6 @@ BOOL SetLockPagesPrivilege(HANDLE hProcess, BOOL bEnable)
 
 void slow_hash_allocate_state(void)
 {
-    int state = 0;
     if(hp_state != NULL)
         return;
 
@@ -368,7 +367,7 @@ void slow_hash_free_state(void)
     hp_allocated = 0;
 }
 
-void cn_slow_hash(const void *data, size_t length, char *hash)
+void cn_slow_hash(const void *data, size_t length, char *hash, int light)
 {
     RDATA_ALIGN16 uint8_t expandedKey[240];
 
@@ -392,7 +391,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash)
 
     // this isn't supposed to happen, but guard against it for now.
     if(hp_state == NULL)
-        slow_hash_allocate_state();
+      slow_hash_allocate_state();
 
     hash_process(&state.hs, data, length);
     memcpy(text, state.init, INIT_SIZE_BYTE);
@@ -400,7 +399,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash)
     if(useAes)
     {
         aes_expand_key(state.hs.b, expandedKey);
-        for(i = 0; i < MEMORY / INIT_SIZE_BYTE; i++)
+        for(i = 0; i < MEMORY / (light?2:1) / INIT_SIZE_BYTE; i++)
         {
             aes_pseudo_round(text, text, expandedKey, INIT_SIZE_BLK);
             memcpy(&hp_state[i * INIT_SIZE_BYTE], text, INIT_SIZE_BYTE);
@@ -410,7 +409,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash)
     {
         aes_ctx = (oaes_ctx *) oaes_alloc();
         oaes_key_import_data(aes_ctx, state.hs.b, AES_KEY_SIZE);
-        for(i = 0; i < MEMORY / INIT_SIZE_BYTE; i++)
+        for(i = 0; i < MEMORY  / (light?2:1) / INIT_SIZE_BYTE; i++)
         {
             for(j = 0; j < INIT_SIZE_BLK; j++)
                 aesb_pseudo_round(&text[AES_BLOCK_SIZE * j], &text[AES_BLOCK_SIZE * j], aes_ctx->key->exp_data);
@@ -428,7 +427,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash)
     // this is ugly but the branching affects the loop somewhat so put it outside.
     if(useAes)
     {
-        for(i = 0; i < ITER / 2; i++)
+        for(i = 0; i < ITER  / (light?2:1) / 2; i++)
         {
             pre_aes();
             _c = _mm_aesenc_si128(_c, _a);
@@ -438,7 +437,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash)
     }
     else
     {
-        for(i = 0; i < ITER / 2; i++)
+        for(i = 0; i < ITER  / (light?2:1) / 2; i++)
         {
             pre_aes();
             aesb_single_round((uint8_t *) &_c, (uint8_t *) &_c, (uint8_t *) &_a);
@@ -450,7 +449,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash)
     if(useAes)
     {
         aes_expand_key(&state.hs.b[32], expandedKey);
-        for(i = 0; i < MEMORY / INIT_SIZE_BYTE; i++)
+        for(i = 0; i < MEMORY  / (light?2:1) / INIT_SIZE_BYTE; i++)
         {
             // add the xor to the pseudo round
             aes_pseudo_round_xor(text, text, expandedKey, &hp_state[i * INIT_SIZE_BYTE], INIT_SIZE_BLK);
@@ -459,7 +458,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash)
     else
     {
         oaes_key_import_data(aes_ctx, &state.hs.b[32], AES_KEY_SIZE);
-        for(i = 0; i < MEMORY / INIT_SIZE_BYTE; i++)
+        for(i = 0; i < MEMORY / (light?2:1) / INIT_SIZE_BYTE; i++)
         {
             for(j = 0; j < INIT_SIZE_BLK; j++)
             {
