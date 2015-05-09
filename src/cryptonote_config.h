@@ -32,6 +32,7 @@
 
 #define HARDFORK_1_HEIGHT                               1000
 #define HARDFORK_1_OLD_TARGET                           1
+#define HARDFORK_1_OLD_SPEED_FACTOR                     (20)
 #define HARDFORK_1_POW_SPEED_MULTIPLIER                 2
 #define HARDFORK_1_DIFFADJ                              HARDFORK_1_POW_SPEED_MULTIPLIER
 #define HARDFORK_1_DIFFADJ_WINDOW                       360
@@ -52,7 +53,7 @@
 
 // MONEY_SUPPLY - total number coins to be generated
 #define MONEY_SUPPLY                                    ((uint64_t)(-1))
-#define EMISSION_SPEED_FACTOR                           (20)
+#define EMISSION_SPEED_FACTOR                           (18)
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE       20000 //size of block (bytes) after which reward for block calculated using block size
