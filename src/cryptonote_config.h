@@ -30,7 +30,7 @@
 
 #pragma once
 
-#define HARDFORK_1_HEIGHT                               1000
+#define HARDFORK_1_HEIGHT                               5000000
 #define HARDFORK_1_OLD_TARGET                           1
 #define HARDFORK_1_OLD_SPEED_FACTOR                     (20)
 #define HARDFORK_1_POW_SPEED_MULTIPLIER                 2
@@ -88,8 +88,8 @@
 #define CRYPTONOTE_MEMPOOL_TX_LIVETIME                    86400 //seconds, one day
 #define CRYPTONOTE_MEMPOOL_TX_FROM_ALT_BLOCK_LIVETIME     604800 //seconds, one week
 
-#define P2P_DEFAULT_PORT                                31180
-#define RPC_DEFAULT_PORT                                31181
+#define P2P_DEFAULT_PORT                                11180
+#define RPC_DEFAULT_PORT                                11181
 #define COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT           1000
 
 #define P2P_LOCAL_WHITE_PEERLIST_LIMIT                  1000
@@ -108,7 +108,7 @@
 
 #define ALLOW_DEBUG_COMMANDS
 
-#define CRYPTONOTE_NAME                         "aeone"
+#define CRYPTONOTE_NAME                         "aeon"
 #define CRYPTONOTE_POOLDATA_FILENAME            "poolstate.bin"
 #define CRYPTONOTE_BLOCKCHAINDATA_FILENAME      "blockchain.bin"
 #define CRYPTONOTE_BLOCKCHAINDATA_TEMP_FILENAME "blockchain.bin.tmp"
