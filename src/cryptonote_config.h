@@ -31,7 +31,7 @@
 #pragma once
 
 #define HARDFORK_1_HEIGHT                               5000000
-#define HARDFORK_1_OLD_TARGET                           1
+#define HARDFORK_1_OLD_TARGET                           60
 #define HARDFORK_1_OLD_SPEED_FACTOR                     (20)
 #define HARDFORK_1_POW_SPEED_MULTIPLIER                 2
 #define HARDFORK_1_DIFFADJ                              HARDFORK_1_POW_SPEED_MULTIPLIER
@@ -67,7 +67,7 @@
 #define ORPHANED_BLOCKS_MAX_COUNT                       100
 
 
-#define DIFFICULTY_TARGET                               4   // seconds
+#define DIFFICULTY_TARGET                               120   // seconds
 #define DIFFICULTY_WINDOW                               720 // blocks
 #define DIFFICULTY_LAG                                  15  // !!!
 #define DIFFICULTY_CUT                                  60  // timestamps to cut after sorting
