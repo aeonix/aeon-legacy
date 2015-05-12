@@ -89,7 +89,17 @@ bool blockchain_storage::init(const std::string& config_folder)
   m_config_folder = config_folder;
   LOG_PRINT_L0("Loading blockchain...");
   const std::string filename = m_config_folder + "/" CRYPTONOTE_BLOCKCHAINDATA_FILENAME;
-  if(!tools::unserialize_obj_from_file(*this, filename))
+  if(tools::unserialize_obj_from_file(*this, filename))
+  {
+    // checkpoints
+
+    // mainchain
+    for (size_t height=0; height < m_blocks.size(); ++height)
+    {
+        CHECK_AND_ASSERT_MES((!m_checkpoints.is_in_checkpoint_zone(height)) || m_checkpoints.check_block(height,get_block_hash(m_blocks[height].bl)),false,"checkpoint fail, blockchain.bin invalid");
+    }
+  }
+  else
   {
       LOG_PRINT_L0("Can't load blockchain storage from file, generating genesis block.");
       block bl = boost::value_initialized<block>();
@@ -98,6 +108,7 @@ bool blockchain_storage::init(const std::string& config_folder)
       add_new_block(bl, bvc);
       CHECK_AND_ASSERT_MES(!bvc.m_verifivation_failed && bvc.m_added_to_main_chain, false, "Failed to add genesis block to blockchain");
   }
+
   if(!m_blocks.size())
   {
     LOG_PRINT_L0("Blockchain not loaded, generating genesis block.");
