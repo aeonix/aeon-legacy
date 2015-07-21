@@ -1,4 +1,4 @@
-// Copyright (c) 2014, AEON, The Monero Project
+// Copyright (c) 2014, 2015 AEON, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,13 @@
 
 #pragma once
 
+#define HARDFORK_1_HEIGHT                               592000
+#define HARDFORK_1_OLD_TARGET                           60
+#define HARDFORK_1_OLD_SPEED_FACTOR                     (20)
+#define HARDFORK_1_POW_SPEED_MULTIPLIER                 2
+#define HARDFORK_1_DIFFADJ                              HARDFORK_1_POW_SPEED_MULTIPLIER
+#define HARDFORK_1_DIFFADJ_WINDOW                       360
+
 #define CRYPTONOTE_MAX_BLOCK_NUMBER                     500000000
 #define CRYPTONOTE_MAX_BLOCK_SIZE                       500000000  // block header blob limit, never used!
 #define CRYPTONOTE_GETBLOCKTEMPLATE_MAX_BLOCK_SIZE	196608 //size of block (bytes) that is the maximum that miners will produce
@@ -46,7 +53,7 @@
 
 // MONEY_SUPPLY - total number coins to be generated
 #define MONEY_SUPPLY                                    ((uint64_t)(-1))
-#define EMISSION_SPEED_FACTOR                           (20)
+#define EMISSION_SPEED_FACTOR                           (18)
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE       20000 //size of block (bytes) after which reward for block calculated using block size
@@ -60,7 +67,7 @@
 #define ORPHANED_BLOCKS_MAX_COUNT                       100
 
 
-#define DIFFICULTY_TARGET                               60  // seconds
+#define DIFFICULTY_TARGET                               240   // seconds
 #define DIFFICULTY_WINDOW                               720 // blocks
 #define DIFFICULTY_LAG                                  15  // !!!
 #define DIFFICULTY_CUT                                  60  // timestamps to cut after sorting
