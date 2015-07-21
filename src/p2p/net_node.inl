@@ -533,14 +533,14 @@ namespace nodetool
     if (priority) {\
       LOG_PRINT_CC_L0(con, msg); \
     } else {\
-      LOG_PRINT_CC_L1(con, msg); \
+      LOG_PRINT_CC_L2(con, msg); \
     } \
   } while(0)
 
   template<class t_payload_net_handler>
   bool node_server<t_payload_net_handler>::try_to_connect_and_handshake_with_new_peer(const net_address& na, bool just_take_peerlist, uint64_t last_seen_stamp, bool white)
   {
-    LOG_PRINT_L1("Connecting to " << epee::string_tools::get_ip_string_from_int32(na.ip)  << ":"
+    LOG_PRINT_L2("Connecting to " << epee::string_tools::get_ip_string_from_int32(na.ip)  << ":"
         << epee::string_tools::num_to_string_fast(na.port) << "(white=" << white << ", last_seen: "
         << (last_seen_stamp ? epee::misc_utils::get_time_interval_string(time(NULL) - last_seen_stamp):"never")
         << ")...");

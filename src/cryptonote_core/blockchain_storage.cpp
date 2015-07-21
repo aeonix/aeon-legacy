@@ -89,7 +89,17 @@ bool blockchain_storage::init(const std::string& config_folder)
   m_config_folder = config_folder;
   LOG_PRINT_L0("Loading blockchain...");
   const std::string filename = m_config_folder + "/" CRYPTONOTE_BLOCKCHAINDATA_FILENAME;
-  if(!tools::unserialize_obj_from_file(*this, filename))
+  if(tools::unserialize_obj_from_file(*this, filename))
+  {
+    // checkpoints
+
+    // mainchain
+    for (size_t height=0; height < m_blocks.size(); ++height)
+    {
+        CHECK_AND_ASSERT_MES((!m_checkpoints.is_in_checkpoint_zone(height)) || m_checkpoints.check_block(height,get_block_hash(m_blocks[height].bl)),false,"checkpoint fail, blockchain.bin invalid");
+    }
+  }
+  else
   {
       LOG_PRINT_L0("Can't load blockchain storage from file, generating genesis block.");
       block bl = boost::value_initialized<block>();
@@ -98,6 +108,7 @@ bool blockchain_storage::init(const std::string& config_folder)
       add_new_block(bl, bvc);
       CHECK_AND_ASSERT_MES(!bvc.m_verifivation_failed && bvc.m_added_to_main_chain, false, "Failed to add genesis block to blockchain");
   }
+
   if(!m_blocks.size())
   {
     LOG_PRINT_L0("Blockchain not loaded, generating genesis block.");
@@ -373,7 +384,7 @@ difficulty_type blockchain_storage::get_difficulty_for_next_block()
     timestamps.push_back(m_blocks[offset].bl.timestamp);
     commulative_difficulties.push_back(m_blocks[offset].cumulative_difficulty);
   }
-  return next_difficulty(timestamps, commulative_difficulties);
+  return next_difficulty(timestamps, commulative_difficulties,m_blocks.size());
 }
 //------------------------------------------------------------------
 bool blockchain_storage::rollback_blockchain_switching(std::list<block>& original_chain, size_t rollback_height)
@@ -507,7 +518,7 @@ difficulty_type blockchain_storage::get_next_difficulty_for_alternative_chain(co
         break;
     }
   }
-  return next_difficulty(timestamps, commulative_difficulties);
+  return next_difficulty(timestamps, commulative_difficulties,bei.height);
 }
 //------------------------------------------------------------------
 bool blockchain_storage::prevalidate_miner_transaction(const block& b, uint64_t height)
@@ -533,7 +544,7 @@ bool blockchain_storage::prevalidate_miner_transaction(const block& b, uint64_t 
   return true;
 }
 //------------------------------------------------------------------
-bool blockchain_storage::validate_miner_transaction(const block& b, size_t cumulative_block_size, uint64_t fee, uint64_t& base_reward, uint64_t already_generated_coins)
+bool blockchain_storage::validate_miner_transaction(const block& b, size_t cumulative_block_size, uint64_t fee, uint64_t& base_reward, uint64_t already_generated_coins, size_t height)
 {
   //validate reward
   uint64_t money_in_use = 0;
@@ -542,7 +553,7 @@ bool blockchain_storage::validate_miner_transaction(const block& b, size_t cumul
 
   std::vector<size_t> last_blocks_sizes;
   get_last_n_blocks_sizes(last_blocks_sizes, CRYPTONOTE_REWARD_BLOCKS_WINDOW);
-  if (!get_block_reward(epee::misc_utils::median(last_blocks_sizes), cumulative_block_size, already_generated_coins, base_reward)) {
+  if (!get_block_reward(epee::misc_utils::median(last_blocks_sizes), cumulative_block_size, already_generated_coins, base_reward, height)) {
     LOG_PRINT_L0("block size " << cumulative_block_size << " is bigger than allowed for this blockchain");
     return false;
   }
@@ -1551,6 +1562,7 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
   if(!check_hash(proof_of_work, current_diffic))
   {
     LOG_PRINT_L0("Block with id: " << id << ENDL
+		 << "height: " << m_blocks.size() << ENDL
       << "have not enough proof of work: " << proof_of_work << ENDL
       << "nexpected difficulty: " << current_diffic );
     bvc.m_verifivation_failed = true;
@@ -1631,7 +1643,7 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
   }
   uint64_t base_reward = 0;
   uint64_t already_generated_coins = m_blocks.size() ? m_blocks.back().already_generated_coins:0;
-  if(!validate_miner_transaction(bl, cumulative_block_size, fee_summary, base_reward, already_generated_coins))
+  if(!validate_miner_transaction(bl, cumulative_block_size, fee_summary, base_reward, already_generated_coins, get_current_blockchain_height()))
   {
     LOG_PRINT_L0("Block with id: " << id
       << " have wrong miner transaction");
