@@ -1,4 +1,4 @@
-// Copyright (c) 2014, AEON, The Monero Project
+// Copyright (c) 2014, 2015 AEON, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -30,7 +30,7 @@
 
 #pragma once
 
-#define HARDFORK_1_HEIGHT                               5000000
+#define HARDFORK_1_HEIGHT                               592000
 #define HARDFORK_1_OLD_TARGET                           60
 #define HARDFORK_1_OLD_SPEED_FACTOR                     (20)
 #define HARDFORK_1_POW_SPEED_MULTIPLIER                 2
