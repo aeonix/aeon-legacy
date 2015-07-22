@@ -40,15 +40,17 @@
  #include <stdlib.h>
 #endif
 
+#if !defined(NDEBUG)
 /// Quick check if this is power of two (use on unsigned types; in this case for size_t only)
-bool ispowerof2_size_t(size_t x) {
+static bool ispowerof2_size_t(size_t x) {
 	return x && !(x & (x - 1));
 }
+#endif
 
 /*** 
 * Round to power of two, for count>=3 and for count being not too large (as reasonable for tree hash calculations)
 */
-size_t tree_hash_cnt(size_t count) {
+static size_t tree_hash_cnt(size_t count) {
 	assert( count >= 3); // cases for 0,1,2 are handled elsewhere
 	// Round down the count size: fun(2**n)= 2**(n-1) to round down to power of two
 	size_t tmp = count - 1;
@@ -56,7 +58,7 @@ size_t tree_hash_cnt(size_t count) {
 	for (jj=1 ; tmp != 0 ; ++jj) {
 		tmp /= 2; // dividing by 2 until to get how many powers of 2 fits size_to tmp
 	}
-	size_t cnt = 1 << (jj-2); // cnt is the count, but rounded down to power of two
+	size_t cnt = ((size_t)1) << (jj-2); // cnt is the count, but rounded down to power of two
 	// printf("count=%zu cnt=%zu jj=%zu tmp=%zu \n" , count,cnt,jj,tmp);
 	assert( cnt > 0 );	assert( cnt >= count/2 ); 	assert( cnt <= count );
 	assert( ispowerof2_size_t( cnt ));
