@@ -93,20 +93,20 @@
 
 #define pre_aes() \
   j = state_index(a,(light?2:1));		 \
-	_c = _mm_load_si128(R128(&hp_state[j])); \
+	_c = _mm_load_si128(R128(&hp_state_l[j])); \
 	_a = _mm_load_si128(R128(a)); \
  
 // dga's optimized scratchpad twiddling
 #define post_aes() \
 	_mm_store_si128(R128(c), _c); \
 	_b = _mm_xor_si128(_b, _c); \
-	_mm_store_si128(R128(&hp_state[j]), _b); \
+	_mm_store_si128(R128(&hp_state_l[j]), _b); \
 	j = state_index(c,(light?2:1));		 \
-	p = U64(&hp_state[j]); \
+	p = U64(&hp_state_l[j]); \
 	b[0] = p[0]; b[1] = p[1]; \
 	__mul(); \
 	a[0] += hi; a[1] += lo; \
-	p = U64(&hp_state[j]); \
+	p = U64(&hp_state_l[j]); \
 	p[0] = a[0];  p[1] = a[1]; \
 	a[0] ^= b[0]; a[1] ^= b[1]; \
 	_b = _c; \
@@ -392,6 +392,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light)
     // this isn't supposed to happen, but guard against it for now.
     if(hp_state == NULL)
       slow_hash_allocate_state();
+    uint8_t *hp_state_l = hp_state;
 
     hash_process(&state.hs, data, length);
     memcpy(text, state.init, INIT_SIZE_BYTE);
@@ -402,7 +403,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light)
         for(i = 0; i < MEMORY / (light?2:1) / INIT_SIZE_BYTE; i++)
         {
             aes_pseudo_round(text, text, expandedKey, INIT_SIZE_BLK);
-            memcpy(&hp_state[i * INIT_SIZE_BYTE], text, INIT_SIZE_BYTE);
+            memcpy(&hp_state_l[i * INIT_SIZE_BYTE], text, INIT_SIZE_BYTE);
         }
     }
     else
@@ -414,7 +415,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light)
             for(j = 0; j < INIT_SIZE_BLK; j++)
                 aesb_pseudo_round(&text[AES_BLOCK_SIZE * j], &text[AES_BLOCK_SIZE * j], aes_ctx->key->exp_data);
 
-            memcpy(&hp_state[i * INIT_SIZE_BYTE], text, INIT_SIZE_BYTE);
+            memcpy(&hp_state_l[i * INIT_SIZE_BYTE], text, INIT_SIZE_BYTE);
         }
     }
 
@@ -452,7 +453,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light)
         for(i = 0; i < MEMORY  / (light?2:1) / INIT_SIZE_BYTE; i++)
         {
             // add the xor to the pseudo round
-            aes_pseudo_round_xor(text, text, expandedKey, &hp_state[i * INIT_SIZE_BYTE], INIT_SIZE_BLK);
+            aes_pseudo_round_xor(text, text, expandedKey, &hp_state_l[i * INIT_SIZE_BYTE], INIT_SIZE_BLK);
         }
     }
     else
@@ -462,7 +463,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light)
         {
             for(j = 0; j < INIT_SIZE_BLK; j++)
             {
-                xor_blocks(&text[j * AES_BLOCK_SIZE], &hp_state[i * INIT_SIZE_BYTE + j * AES_BLOCK_SIZE]);
+                xor_blocks(&text[j * AES_BLOCK_SIZE], &hp_state_l[i * INIT_SIZE_BYTE + j * AES_BLOCK_SIZE]);
                 aesb_pseudo_round(&text[AES_BLOCK_SIZE * j], &text[AES_BLOCK_SIZE * j], aes_ctx->key->exp_data);
             }
         }
