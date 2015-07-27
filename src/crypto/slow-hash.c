@@ -565,7 +565,7 @@ union cn_slow_hash_state {
 };
 #pragma pack(pop)
 
-void cn_slow_hash(const void *data, size_t length, char *hash) {
+void cn_slow_hash(const void *data, size_t length, char *hash, int light) {
   uint8_t long_state[MEMORY];
   union cn_slow_hash_state state;
   uint8_t text[INIT_SIZE_BYTE];
@@ -583,7 +583,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash) {
   aes_ctx = (oaes_ctx *) oaes_alloc();
   
   oaes_key_import_data(aes_ctx, aes_key, AES_KEY_SIZE);
-  for (i = 0; i < MEMORY / INIT_SIZE_BYTE; i++) {
+  for (i = 0; i < MEMORY / (light?2:1) / INIT_SIZE_BYTE; i++) {
     for (j = 0; j < INIT_SIZE_BLK; j++) {    
 		  aesb_pseudo_round(&text[AES_BLOCK_SIZE * j], &text[AES_BLOCK_SIZE * j], aes_ctx->key->exp_data);
     }
@@ -601,29 +601,29 @@ void cn_slow_hash(const void *data, size_t length, char *hash) {
      * next address  <-+
      */
     /* Iteration 1 */
-    j = e2i(a, MEMORY / AES_BLOCK_SIZE);
+    j = e2i(a, MEMORY / (light?2:1) / AES_BLOCK_SIZE);
     copy_block(c, &long_state[j * AES_BLOCK_SIZE]);
-	  aesb_single_round(c, c, a);
+    aesb_single_round(c, c, a);
     xor_blocks(b, c);
     swap_blocks(b, c);
     copy_block(&long_state[j * AES_BLOCK_SIZE], c);
-    assert(j == e2i(a, MEMORY / AES_BLOCK_SIZE));
+    assert(j == e2i(a, MEMORY / (light?2:1) / AES_BLOCK_SIZE);
     swap_blocks(a, b);
     /* Iteration 2 */
-    j = e2i(a, MEMORY / AES_BLOCK_SIZE);
+    j = e2i(a, MEMORY / AES_BLOCK_SIZE,light);
     copy_block(c, &long_state[j * AES_BLOCK_SIZE]);
     mul(a, c, d);
     sum_half_blocks(b, d);
     swap_blocks(b, c);
     xor_blocks(b, c);
     copy_block(&long_state[j * AES_BLOCK_SIZE], c);
-    assert(j == e2i(a, MEMORY / AES_BLOCK_SIZE));
+    assert(j == e2i(a, MEMORY / (light?2:1) / AES_BLOCK_SIZE));
     swap_blocks(a, b);
   }
 
   memcpy(text, state.init, INIT_SIZE_BYTE);
   oaes_key_import_data(aes_ctx, &state.hs.b[32], AES_KEY_SIZE);
-  for (i = 0; i < MEMORY / INIT_SIZE_BYTE; i++) {
+  for (i = 0; i < MEMORY / (light?2:1) / INIT_SIZE_BYTE; i++) {
     for (j = 0; j < INIT_SIZE_BLK; j++) {
       xor_blocks(&text[j * AES_BLOCK_SIZE], &long_state[i * INIT_SIZE_BYTE + j * AES_BLOCK_SIZE]);
 	    aesb_pseudo_round(&text[AES_BLOCK_SIZE * j], &text[AES_BLOCK_SIZE * j], aes_ctx->key->exp_data);
