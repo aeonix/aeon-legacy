@@ -68,6 +68,17 @@ static inline uint64_t lo_dword(uint64_t val) {
   return val & 0xFFFFFFFF;
 }
 
+#if defined(__GNUC__) && defined(__x86_64__)
+
+static inline uint64_t mul128(uint64_t a, uint64_t b, uint64_t *high) {
+  typedef unsigned __int128 uint128_t;
+  uint128_t res = (uint128_t) a * (uint128_t) b;
+  *high = (uint64_t) (res >> 64);
+  return (uint64_t) res;
+}
+
+#else
+
 static inline uint64_t mul128(uint64_t multiplier, uint64_t multiplicand, uint64_t* product_hi) {
   // multiplier   = ab = a * 2^32 + b
   // multiplicand = cd = c * 2^32 + d
@@ -93,6 +104,7 @@ static inline uint64_t mul128(uint64_t multiplier, uint64_t multiplicand, uint64
 
   return product_lo;
 }
+#endif
 
 static inline uint64_t div_with_reminder(uint64_t dividend, uint32_t divisor, uint32_t* remainder) {
   dividend |= ((uint64_t)*remainder) << 32;
