@@ -423,6 +423,15 @@ namespace cryptonote
 
     BOOST_FOREACH(transactions_container::value_type& tx, m_transactions)
     {
+      if (tx.second.tx.vin.size() > 0) 
+      {
+        CHECKED_GET_SPECIFIC_VARIANT(tx.second.tx.vin[0], const txin_to_key, itk, false);
+
+        // discourage < 3-way-mix transactions by mining them only as the first tx in an empty block
+        if (itk.key_offsets.size() < 3 && total_size > 0)
+          continue;
+      }
+
       // Can not exceed maximum block size
       if (max_total_size < total_size + tx.second.blob_size)
         continue;
