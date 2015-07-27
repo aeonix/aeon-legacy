@@ -37,7 +37,7 @@
 #include "hash-ops.h"
 #include "oaes_lib.h"
 
-#if defined(__x86_64__)
+#if 0// defined(__x86_64__)
 // Optimised code below, uses x86-specific intrinsics, SSE2, AES-NI
 // Fall back to more portable code is down at the bottom
 
@@ -610,7 +610,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light) {
     assert(j == e2i(a, MEMORY / (light?2:1) / AES_BLOCK_SIZE));
     swap_blocks(a, b);
     /* Iteration 2 */
-    j = e2i(a, MEMORY / AES_BLOCK_SIZE,light);
+    j = e2i(a, MEMORY / (light?2:1) / AES_BLOCK_SIZE);
     copy_block(c, &long_state[j * AES_BLOCK_SIZE]);
     mul(a, c, d);
     sum_half_blocks(b, d);
