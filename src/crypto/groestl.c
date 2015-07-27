@@ -8,6 +8,8 @@
  *
  */
 
+#include <stddef.h>
+
 #include "groestl.h"
 #include "groestl_tables.h"
 
@@ -204,7 +206,7 @@ static void OutputTransformation(hashState *ctx) {
 
 /* initialise context */
 static void Init(hashState* ctx) {
-  int i = 0;
+  size_t i = 0;
   /* allocate memory for state and data buffer */
 
   for(;i<(SIZE512/sizeof(uint32_t));i++)
