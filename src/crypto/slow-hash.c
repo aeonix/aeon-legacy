@@ -595,7 +595,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light) {
     b[i] = state.k[16 + i] ^ state.k[48 + i];
   }
 
-  for (i = 0; i < ITER / 2; i++) {
+  for (i = 0; i < ITER / (light?2:1) /  2; i++) {
     /* Dependency chain: address -> read value ------+
      * written value <-+ hard function (AES or MUL) <+
      * next address  <-+
