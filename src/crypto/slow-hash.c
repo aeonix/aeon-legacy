@@ -607,7 +607,7 @@ void cn_slow_hash(const void *data, size_t length, char *hash, int light) {
     xor_blocks(b, c);
     swap_blocks(b, c);
     copy_block(&long_state[j * AES_BLOCK_SIZE], c);
-    assert(j == e2i(a, MEMORY / (light?2:1) / AES_BLOCK_SIZE);
+    assert(j == e2i(a, MEMORY / (light?2:1) / AES_BLOCK_SIZE));
     swap_blocks(a, b);
     /* Iteration 2 */
     j = e2i(a, MEMORY / AES_BLOCK_SIZE,light);
