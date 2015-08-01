@@ -38,6 +38,7 @@
 #include <boost/multi_index/member.hpp>
 #include <boost/foreach.hpp>
 #include <atomic>
+#include <cstddef>
 
 #include "syncobj.h"
 #include "string_tools.h"
@@ -65,7 +66,6 @@ namespace cryptonote
     {
       transaction tx;
       uint64_t m_keeper_block_height;
-      size_t m_blob_size;
       std::vector<uint64_t> m_global_output_indexes;
     };
 

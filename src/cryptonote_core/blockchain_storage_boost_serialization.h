@@ -29,6 +29,7 @@
 // Parts of this file are originally copyright (c) 2012-2013 The Cryptonote developers
 
 #pragma once 
+#include <cstddef>
 
 namespace boost
 {
@@ -41,7 +42,8 @@ namespace boost
     {
       ar & te.tx;
       ar & te.m_keeper_block_height;
-      ar & te.m_blob_size;
+      size_t dummy;
+      ar & dummy; // formerly te.m_blob_size;
       ar & te.m_global_output_indexes;
     }
 
