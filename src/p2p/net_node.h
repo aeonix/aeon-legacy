@@ -41,6 +41,7 @@
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options/variables_map.hpp>
 #include <boost/serialization/version.hpp>
+#include <boost/serialization/map.hpp>
 
 #include "warnings.h"
 #include "net/levin_server_cp2.h"
@@ -55,6 +56,7 @@
 PUSH_WARNINGS
 DISABLE_VS_WARNINGS(4355)
 
+
 namespace nodetool
 {
   template<class base_type>
@@ -65,7 +67,8 @@ namespace nodetool
 
   template<class t_payload_net_handler>
   class node_server: public epee::levin::levin_commands_handler<p2p_connection_context_t<typename t_payload_net_handler::connection_context> >,
-                     public i_p2p_endpoint<typename t_payload_net_handler::connection_context>
+    public i_p2p_endpoint<typename t_payload_net_handler::connection_context>,
+    public epee::net_utils::i_connection_filter
   {
     struct by_conn_id{};
     struct by_peer_id{};
@@ -94,8 +97,23 @@ namespace nodetool
     template <class Archive, class t_version_type>
     void serialize(Archive &a,  const t_version_type ver)
     {
+#if 0
+      {
+	time_t current_time = time(nullptr);
+	time_t archive_time = current_time;
+	a & archive_time;
+	if(archive_time > current_time)
+	{
+	  LOG_PRINT_L0("p2p network state file has future time, skipped");
+	  return;
+	}
+      }
+#endif
       a & m_peerlist;
       a & m_config.m_peer_id;
+#if 0
+	a & m_blocked_ips;
+#endif
     }
     // debug functions
     bool log_peerlist();
@@ -147,6 +165,10 @@ namespace nodetool
     virtual bool drop_connection(const epee::net_utils::connection_context_base& context);
     virtual void request_callback(const epee::net_utils::connection_context_base& context);
     virtual void for_each_connection(std::function<bool(typename t_payload_net_handler::connection_context&, peerid_type)> f);
+    virtual bool block_ip(uint32_t adress);
+    virtual bool add_ip_fail(uint32_t address);
+    //----------------- i_connection_filter  --------------------------------------------------------
+    virtual bool is_remote_ip_allowed(uint32_t adress);
     //-----------------------------------------------------------------------------------------------
     bool parse_peer_from_string(nodetool::net_address& pe, const std::string& node_addr);
     bool handle_command_line(const boost::program_options::variables_map& vm);
@@ -171,6 +193,8 @@ namespace nodetool
     template<class t_callback>
     bool try_ping(basic_node_data& node_data, p2p_connection_context& context, t_callback cb);
     bool make_expected_connections_count(bool white_list, size_t expected_connections);
+    void cache_connect_fail_info(const net_address& addr);
+    bool is_addr_recently_failed(const net_address& addr);
     bool is_priority_node(const net_address& na);
 
     template <class Container>
@@ -229,6 +253,15 @@ namespace nodetool
     uint64_t m_peer_livetime;
     //keep connections to initiate some interactions
     net_server m_net_server;
+
+    std::map<net_address, time_t> m_conn_fails_cache;
+    epee::critical_section m_conn_fails_cache_lock;
+
+    epee::critical_section m_blocked_ips_lock;
+    std::map<uint32_t, time_t> m_blocked_ips;
+
+    epee::critical_section m_ip_fails_score_lock;
+    std::map<uint32_t, uint64_t> m_ip_fails_score;
   };
 }
 
