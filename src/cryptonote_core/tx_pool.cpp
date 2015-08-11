@@ -86,7 +86,7 @@ namespace cryptonote
     }
 
     uint64_t fee = inputs_amount - outputs_amount;
-    if (!kept_by_block && fee < DEFAULT_FEE)
+    if (!kept_by_block && fee < MINIMUM_RELAY_FEE)
     {
       LOG_ERROR("transaction fee is not enough: " << print_money(fee) << ", minumim fee: " << print_money(DEFAULT_FEE));
       tvc.m_verifivation_failed = true;
@@ -449,9 +449,13 @@ namespace cryptonote
       if (total_size > median_size)
         break;      
 
+      // Don't mine transactions with too-low fee
+      if (DEFAULT_FEE > MINIMUM_RELAY_FEE && tx.second.fee < DEFAULT_FEE)
+	continue;
+
       // Skip transactions that are not ready to be
       // included into the blockchain or that are
-      // missing key images
+      // double spends of another transaction already in the template
       if (!is_transaction_ready_to_go(tx.second) || have_key_images(k_images, tx.second.tx))
         continue;
 
