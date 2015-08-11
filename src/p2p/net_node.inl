@@ -646,6 +646,13 @@ namespace nodetool
 
   //-----------------------------------------------------------------------------------
   template<class t_payload_net_handler>
+  void node_server<t_payload_net_handler>::cache_connect_fail_info(const net_address& addr)
+  {
+    CRITICAL_REGION_LOCAL(m_conn_fails_cache_lock);
+    m_conn_fails_cache[addr] = time(NULL);
+  }
+  //-----------------------------------------------------------------------------------
+  template<class t_payload_net_handler>
   bool node_server<t_payload_net_handler>::is_addr_recently_failed(const net_address& addr)
   {
     CRITICAL_REGION_LOCAL(m_conn_fails_cache_lock);
@@ -703,8 +710,10 @@ namespace nodetool
                     << "] last_seen: " << (pe.last_seen ? epee::misc_utils::get_time_interval_string(time(NULL) - pe.last_seen) : "never"));
       
       if(!try_to_connect_and_handshake_with_new_peer(pe.adr, false, pe.last_seen, use_white_list))
+      {
+        cache_connect_fail_info(pe.adr);
         continue;
-
+      }
       return true;
     }
     return false;

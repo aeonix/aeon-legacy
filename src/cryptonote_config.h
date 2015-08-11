@@ -59,10 +59,10 @@
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE       20000 //size of block (bytes) after which reward for block calculated using block size
 #define CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE          600
 #define CRYPTONOTE_DISPLAY_DECIMAL_POINT                12
-// COIN - number of smallest units in one coin
-#define COIN                                            ((uint64_t)100000000) // pow(10, 8)
-#define DEFAULT_FEE                                     ((uint64_t)1000000) // pow(10, 6)
-
+// COIN - number of smallest units in one coin (currently unused except by tests)
+#define COIN                                            ((uint64_t)1000000000000) // pow(10, 12)
+#define DEFAULT_FEE                                     ((uint64_t)10000000000) // pow(10, 10)
+#define MINIMUM_RELAY_FEE                               ((uint64_t)1000000) // pow(10, 6)
 
 #define ORPHANED_BLOCKS_MAX_COUNT                       100
 
