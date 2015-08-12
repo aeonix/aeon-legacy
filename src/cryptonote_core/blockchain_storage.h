@@ -187,7 +187,6 @@ namespace cryptonote
     typedef std::unordered_set<crypto::key_image> key_images_container;
     typedef std::vector<block_extended_info> blocks_container;
     typedef std::unordered_map<crypto::hash, block_extended_info> blocks_ext_by_hash;
-    typedef std::unordered_map<crypto::hash, block> blocks_by_hash;
     typedef std::map<uint64_t, std::vector<std::pair<crypto::hash, size_t>>> outputs_container; //crypto::hash - tx hash, size_t - index of out in transaction
 
     tx_memory_pool& m_tx_pool;
