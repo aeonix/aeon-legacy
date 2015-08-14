@@ -280,11 +280,9 @@ namespace cryptonote
       typedef std::map<uint64_t, std::vector<std::pair<crypto::hash, size_t>>> old_outputs_container; //crypto::hash - tx hash, size_t - index of out in transaction
       old_outputs_container old_outs;
       ar & old_outs;
-      LOG_PRINT_L0("Out outs size " << old_outs.size());
       for (const auto& entry : old_outs)
       {
 	if (entry.second.size() == 0) {
-	  LOG_PRINT_L0("empty out size: " << entry.first);
 	  m_outputs[entry.first];
 	}
 	for (const auto& p : entry.second)
@@ -311,7 +309,6 @@ namespace cryptonote
 	  m_outputs[entry.first].push_back(std::make_tuple((uint32_t)tce.m_keeper_block_height,i,(uint32_t)p.second));
 	}
       }	   
-      LOG_PRINT_L0("Converted outs size " << m_outputs.size());
     }
     else
       ar & m_outputs;
