@@ -415,6 +415,7 @@ namespace cryptonote
 
     total_size = 0;
     fee = 0;
+    size_t n = 0;
 
     // Maximum block size is 130% of the median block size.  This gives a
     // little extra headroom for the max size transaction.
@@ -428,7 +429,7 @@ namespace cryptonote
         CHECKED_GET_SPECIFIC_VARIANT(tx.second.tx.vin[0], const txin_to_key, itk, false);
 
         // discourage < 3-way-mix transactions by mining them only as the first tx in an empty block
-        if (itk.key_offsets.size() < 3 && total_size > 0)
+        if (n > 0 && itk.key_offsets.size() < 3)
           continue;
       }
 
@@ -449,10 +450,12 @@ namespace cryptonote
       if (total_size > median_size)
         break;      
 
-      // Don't mine transactions with too-low fee
-      if (DEFAULT_FEE > MINIMUM_RELAY_FEE && tx.second.fee < DEFAULT_FEE)
+      // Don't mine transactions with too-low fee half the time
+      // make sure first slot (n==0) is allowed to not completely shut out
+      // low mix from old client
+      if (DEFAULT_FEE > MINIMUM_RELAY_FEE && (n&1) != 0 && tx.second.fee < DEFAULT_FEE)
 	continue;
-
+      
       // Skip transactions that are not ready to be
       // included into the blockchain or that are
       // double spends of another transaction already in the template
@@ -463,6 +466,7 @@ namespace cryptonote
       total_size += tx.second.blob_size;
       fee += tx.second.fee;
       append_key_images(k_images, tx.second.tx);
+      n++;
     }
 
     return true;
