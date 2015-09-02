@@ -36,6 +36,7 @@
 #include "common/int-util.h"
 #include "hash-ops.h"
 #include "oaes_lib.h"
+#include "aesb.h"
 
 #if defined(__x86_64__) || (defined(_MSC_VER) && defined(_WIN64))
 // Optimised code below, uses x86-specific intrinsics, SSE2, AES-NI
@@ -110,7 +111,6 @@
 	b[0] = p[0]; b[1] = p[1]; \
 	__mul(); \
 	a[0] += hi; a[1] += lo; \
-	p = U64(&hp_state_l[j]); \
 	p[0] = a[0];  p[1] = a[1]; \
 	a[0] ^= b[0]; a[1] ^= b[1]; \
 	_b = _c; \
@@ -121,8 +121,6 @@
 #define THREADV __thread
 #endif
 
-extern int aesb_single_round(const uint8_t *in, uint8_t*out, const uint8_t *expandedKey);
-extern int aesb_pseudo_round(const uint8_t *in, uint8_t *out, const uint8_t *expandedKey);
 
 #pragma pack(push, 1)
 union cn_slow_hash_state
