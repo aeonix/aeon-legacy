@@ -1551,28 +1551,30 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
   TIME_MEASURE_START(longhash_calculating_time);
   crypto::hash proof_of_work = null_hash;
 
-  // Formerly the code below contained an if loop with the following condition
-  // !m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height())
-  // however, this caused the daemon to not bother checking PoW for blocks
-  // before checkpoints, which is very dangerous behaviour. We moved the PoW
-  // validation out of the next chunk of code to make sure that we correctly
-  // check PoW now.
-  proof_of_work = get_block_longhash(bl, m_blocks.size());
-
-  if(!check_hash(proof_of_work, current_diffic))
+  if(!m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height()))
   {
-    LOG_PRINT_L0("Block with id: " << id << ENDL
-		 << "height: " << m_blocks.size() << ENDL
-      << "have not enough proof of work: " << proof_of_work << ENDL
-      << "nexpected difficulty: " << current_diffic );
-    bvc.m_verifivation_failed = true;
-    return false;
+    proof_of_work = get_block_longhash(bl, m_blocks.size());
+
+    if(!check_hash(proof_of_work, current_diffic))
+    {
+	LOG_PRINT_L0("Block with id: " << id << ENDL
+		     << "height: " << m_blocks.size() << ENDL
+		     << "have not enough proof of work: " << proof_of_work << ENDL
+		     << "nexpected difficulty: " << current_diffic );
+	bvc.m_verifivation_failed = true;
+	return false;
+    }
+    m_is_in_checkpoint_zone=false;
   }
-
-  // If we're at a checkpoint, ensure that our hardcoded checkpoint hash
-  // is correct.
-  if(m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height()))
+  else
   {
+    // In the checkpoint zone we do three things
+    // 1. Match known hashes for block heights in checkpoints_create.h
+    // 2. Skip PoW verification to optimize syncing (only on the main chain; alternate blocks still checked)
+    // 3. Skip signature verification to optmiize syncing
+
+    m_is_in_checkpoint_zone=true;
+
     if(!m_checkpoints.check_block(get_current_blockchain_height(), id))
     {
       LOG_ERROR("CHECKPOINT VALIDATION FAILED");
