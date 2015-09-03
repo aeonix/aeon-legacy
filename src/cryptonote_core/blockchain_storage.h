@@ -253,6 +253,12 @@ namespace cryptonote
   template<class archive_t>
   void blockchain_storage::serialize(archive_t & ar, const unsigned int version)
   {
+    // * ignore too-new version when reading
+    if (version > CURRENT_BLOCKCHAIN_STORAGE_ARCHIVE_VER)
+    {
+      LOG_PRINT_L0("Saved blockchain version " << version << " is too new, ignoring");
+      return;
+    }
     if(version < 11)
       return;
     CRITICAL_REGION_LOCAL(m_blockchain_lock);
