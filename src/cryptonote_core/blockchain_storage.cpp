@@ -957,18 +957,16 @@ size_t blockchain_storage::get_alternative_blocks_count()
   return m_alternative_chains.size();
 }
 //------------------------------------------------------------------
-bool blockchain_storage::add_out_to_get_random_outs(std::vector<std::tuple<uint32_t,uint32_t,uint32_t>>& amount_outs, COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS::outs_for_amount& result_outs, uint64_t amount, size_t i)
+bool blockchain_storage::add_out_to_get_random_outs(std::vector<std::pair<crypto::hash, size_t> >& amount_outs, COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS::outs_for_amount& result_outs, uint64_t amount, size_t i)
 {
   CRITICAL_REGION_LOCAL(m_blockchain_lock);
-  auto txid = get_txid_by_out_index(amount_outs[i]);
-  transactions_container::iterator tx_it = m_transactions.find(txid);
-  CHECK_AND_ASSERT_MES(tx_it != m_transactions.end(), false, "internal error: transaction with id " << txid<< ENDL <<
+  transactions_container::iterator tx_it = m_transactions.find(amount_outs[i].first);
+  CHECK_AND_ASSERT_MES(tx_it != m_transactions.end(), false, "internal error: transaction with id " << amount_outs[i].first << ENDL <<
     ", used in mounts global index for amount=" << amount << ": i=" << i << "not found in transactions index");
-  size_t out_idx = std::get<2>(amount_outs[i]);
-  CHECK_AND_ASSERT_MES(tx_it->second.tx.vout.size() > out_idx, false, "internal error: in global outs index, transaction out index="
-    << out_idx<< " more than transaction outputs = " << tx_it->second.tx.vout.size() << ", for tx id = " << txid);
+  CHECK_AND_ASSERT_MES(tx_it->second.tx.vout.size() > amount_outs[i].second, false, "internal error: in global outs index, transaction out index="
+    << amount_outs[i].second << " more than transaction outputs = " << tx_it->second.tx.vout.size() << ", for tx id = " << amount_outs[i].first);
   transaction& tx = tx_it->second.tx;
-  CHECK_AND_ASSERT_MES(tx.vout[out_idx].target.type() == typeid(txout_to_key), false, "unknown tx out type");
+  CHECK_AND_ASSERT_MES(tx.vout[amount_outs[i].second].target.type() == typeid(txout_to_key), false, "unknown tx out type");
 
   //check if transaction is unlocked
   if(!is_tx_spendtime_unlocked(tx.unlock_time))
@@ -976,18 +974,11 @@ bool blockchain_storage::add_out_to_get_random_outs(std::vector<std::tuple<uint3
 
   COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS::out_entry& oen = *result_outs.outs.insert(result_outs.outs.end(), COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS::out_entry());
   oen.global_amount_index = i;
-  oen.out_key = boost::get<txout_to_key>(tx.vout[out_idx].target).key;
+  oen.out_key = boost::get<txout_to_key>(tx.vout[amount_outs[i].second].target).key;
   return true;
 }
 //------------------------------------------------------------------
-crypto::hash blockchain_storage::get_txid_by_out_index(const std::tuple<uint32_t,uint32_t,uint32_t>& out_entry) const
-{
-    auto& bl = m_blocks[std::get<0>(out_entry)].bl;
-    auto index_in_block = std::get<1>(out_entry);
-    return index_in_block==0?get_transaction_hash(bl.miner_tx):bl.tx_hashes[index_in_block-1];
-}
-//------------------------------------------------------------------
-size_t blockchain_storage::find_end_of_allowed_index(const std::vector<std::tuple<uint32_t,uint32_t,uint32_t>>& amount_outs)
+size_t blockchain_storage::find_end_of_allowed_index(const std::vector<std::pair<crypto::hash, size_t> >& amount_outs)
 {
   CRITICAL_REGION_LOCAL(m_blockchain_lock);
   if(!amount_outs.size())
@@ -996,9 +987,8 @@ size_t blockchain_storage::find_end_of_allowed_index(const std::vector<std::tupl
   do
   {
     --i;
-    auto txid = get_txid_by_out_index(amount_outs[i]);
-    transactions_container::iterator it = m_transactions.find(txid);
-    CHECK_AND_ASSERT_MES(it != m_transactions.end(), 0, "internal error: failed to find transaction from outputs index with tx_id=" << txid);
+    transactions_container::iterator it = m_transactions.find(amount_outs[i].first);
+    CHECK_AND_ASSERT_MES(it != m_transactions.end(), 0, "internal error: failed to find transaction from outputs index with tx_id=" << amount_outs[i].first);
     if(it->second.m_keeper_block_height + CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW <= get_current_blockchain_height() )
       return i+1;
   } while (i != 0);
@@ -1018,7 +1008,7 @@ bool blockchain_storage::get_random_outs_for_amounts(const COMMAND_RPC_GET_RANDO
       LOG_ERROR("COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS: not outs for amount " << amount << ", wallet should use some real outs when it lookup for some mix, so, at least one out for this amount should exist");
       continue;//actually this is strange situation, wallet should use some real outs when it lookup for some mix, so, at least one out for this amount should exist
     }
-    std::vector<std::tuple<uint32_t,uint32_t,uint32_t>>& amount_outs  = it->second;
+    std::vector<std::pair<crypto::hash, size_t> >& amount_outs  = it->second;
     //it is not good idea to use top fresh outs, because it increases possibility of transaction canceling on split
     //lets find upper bound of not fresh outs
     size_t up_index_limit = find_end_of_allowed_index(amount_outs);
@@ -1142,7 +1132,6 @@ void blockchain_storage::print_blockchain_index()
 //------------------------------------------------------------------
 void blockchain_storage::print_blockchain_outs(const std::string& file)
 {
-#if 0
   std::stringstream ss;
   CRITICAL_REGION_LOCAL(m_blockchain_lock);
   BOOST_FOREACH(const outputs_container::value_type& v, m_outputs)
@@ -1162,7 +1151,6 @@ void blockchain_storage::print_blockchain_outs(const std::string& file)
   {
     LOG_PRINT_L0("Failed to write current outputs index to file: " << file);
   }
-#endif
 }
 //------------------------------------------------------------------
 bool blockchain_storage::find_blockchain_supplement(const std::list<crypto::hash>& qblock_ids, NOTIFY_RESPONSE_CHAIN_ENTRY::request& resp)
@@ -1241,14 +1229,14 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, block_verif
   return handle_block_to_main_chain(bl, id, bvc);
 }
 //------------------------------------------------------------------
-bool blockchain_storage::push_transaction_to_global_outs_index(const transaction& tx, const crypto::hash& tx_id, std::vector<uint64_t>& global_indexes, uint64_t bl_height, size_t index_in_block)
+bool blockchain_storage::push_transaction_to_global_outs_index(const transaction& tx, const crypto::hash& tx_id, std::vector<uint64_t>& global_indexes)
 {
   CRITICAL_REGION_LOCAL(m_blockchain_lock);
   size_t i = 0;
   BOOST_FOREACH(const auto& ot, tx.vout)
   {
     outputs_container::mapped_type& amount_index = m_outputs[ot.amount];
-    amount_index.push_back(std::make_tuple((uint32_t)bl_height,(uint32_t)index_in_block,(uint32_t)i));
+    amount_index.push_back(std::pair<crypto::hash, size_t>(tx_id, i));
     global_indexes.push_back(amount_index.size()-1);
     ++i;
   }
@@ -1270,13 +1258,11 @@ bool blockchain_storage::get_outs(uint64_t amount, std::list<crypto::public_key>
 
   BOOST_FOREACH(const auto& out_entry, it->second)
   {
-    auto txid = get_txid_by_out_index(out_entry);
-    auto tx_it = m_transactions.find(txid);
-    auto out_index_in_tx = std::get<2>(out_entry);
+    auto tx_it = m_transactions.find(out_entry.first);
     CHECK_AND_ASSERT_MES(tx_it != m_transactions.end(), false, "transactions outs global index consistency broken: wrong tx id in index");
-    CHECK_AND_ASSERT_MES(tx_it->second.tx.vout.size() > out_index_in_tx, false, "transactions outs global index consistency broken: index in tx_outx more then size");
-    CHECK_AND_ASSERT_MES(tx_it->second.tx.vout[out_index_in_tx].target.type() == typeid(txout_to_key), false, "transactions outs global index consistency broken: index in tx_outx more then size");
-    pkeys.push_back(boost::get<txout_to_key>(tx_it->second.tx.vout[out_index_in_tx].target).key);
+    CHECK_AND_ASSERT_MES(tx_it->second.tx.vout.size() > out_entry.second, false, "transactions outs global index consistency broken: index in tx_outx more then size");
+    CHECK_AND_ASSERT_MES(tx_it->second.tx.vout[out_entry.second].target.type() == typeid(txout_to_key), false, "transactions outs global index consistency broken: index in tx_outx more then size");
+    pkeys.push_back(boost::get<txout_to_key>(tx_it->second.tx.vout[out_entry.second].target).key);
   }
 
   return true;
@@ -1291,16 +1277,15 @@ bool blockchain_storage::pop_transaction_from_global_index(const transaction& tx
     auto it = m_outputs.find(ot.amount);
     CHECK_AND_ASSERT_MES(it != m_outputs.end(), false, "transactions outs global index consistency broken");
     CHECK_AND_ASSERT_MES(it->second.size(), false, "transactions outs global index: empty index for amount: " << ot.amount);
-    const auto out_tx_id = get_txid_by_out_index(it->second.back());
-    CHECK_AND_ASSERT_MES(out_tx_id == tx_id , false, "transactions outs global index consistency broken: tx id missmatch");
-    CHECK_AND_ASSERT_MES(std::get<2>(it->second.back())== i, false, "transactions outs global index consistency broken: in transaction index missmatch");
+    CHECK_AND_ASSERT_MES(it->second.back().first == tx_id , false, "transactions outs global index consistency broken: tx id missmatch");
+    CHECK_AND_ASSERT_MES(it->second.back().second == i, false, "transactions outs global index consistency broken: in transaction index missmatch");
     it->second.pop_back();
     --i;
   }
   return true;
 }
 //------------------------------------------------------------------
-bool blockchain_storage::add_transaction_from_block(const transaction& tx, const crypto::hash& tx_id, const crypto::hash& bl_id, uint64_t bl_height, size_t index_in_block)
+bool blockchain_storage::add_transaction_from_block(const transaction& tx, const crypto::hash& tx_id, const crypto::hash& bl_id, uint64_t bl_height)
 {
   CRITICAL_REGION_LOCAL(m_blockchain_lock);
   struct add_transaction_input_visitor: public boost::static_visitor<bool>
@@ -1346,7 +1331,7 @@ bool blockchain_storage::add_transaction_from_block(const transaction& tx, const
     LOG_PRINT_L0("tx with id: " << tx_id << " in block id: " << bl_id << " already in blockchain");
     return false;
   }
-  bool r = push_transaction_to_global_outs_index(tx, tx_id, i_r.first->second.m_global_output_indexes,bl_height,index_in_block);
+  bool r = push_transaction_to_global_outs_index(tx, tx_id, i_r.first->second.m_global_output_indexes);
   CHECK_AND_ASSERT_MES(r, false, "failed to return push_transaction_to_global_outs_index tx id " << tx_id);
   LOG_PRINT_L2("Added transaction to blockchain history:" << ENDL
     << "tx_id: " << tx_id << ENDL
@@ -1566,28 +1551,30 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
   TIME_MEASURE_START(longhash_calculating_time);
   crypto::hash proof_of_work = null_hash;
 
-  // Formerly the code below contained an if loop with the following condition
-  // !m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height())
-  // however, this caused the daemon to not bother checking PoW for blocks
-  // before checkpoints, which is very dangerous behaviour. We moved the PoW
-  // validation out of the next chunk of code to make sure that we correctly
-  // check PoW now.
-  proof_of_work = get_block_longhash(bl, m_blocks.size());
-
-  if(!check_hash(proof_of_work, current_diffic))
+  if(!m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height()))
   {
-    LOG_PRINT_L0("Block with id: " << id << ENDL
-		 << "height: " << m_blocks.size() << ENDL
-      << "have not enough proof of work: " << proof_of_work << ENDL
-      << "nexpected difficulty: " << current_diffic );
-    bvc.m_verifivation_failed = true;
-    return false;
+    proof_of_work = get_block_longhash(bl, m_blocks.size());
+
+    if(!check_hash(proof_of_work, current_diffic))
+    {
+	LOG_PRINT_L0("Block with id: " << id << ENDL
+		     << "height: " << m_blocks.size() << ENDL
+		     << "have not enough proof of work: " << proof_of_work << ENDL
+		     << "nexpected difficulty: " << current_diffic );
+	bvc.m_verifivation_failed = true;
+	return false;
+    }
+    m_is_in_checkpoint_zone=false;
   }
-
-  // If we're at a checkpoint, ensure that our hardcoded checkpoint hash
-  // is correct.
-  if(m_checkpoints.is_in_checkpoint_zone(get_current_blockchain_height()))
+  else
   {
+    // In the checkpoint zone we do three things
+    // 1. Match known hashes for block heights in checkpoints_create.h
+    // 2. Skip PoW verification to optimize syncing (only on the main chain; alternate blocks still checked)
+    // 3. Skip signature verification to optmiize syncing
+
+    m_is_in_checkpoint_zone=true;
+
     if(!m_checkpoints.check_block(get_current_blockchain_height(), id))
     {
       LOG_ERROR("CHECKPOINT VALIDATION FAILED");
@@ -1608,7 +1595,7 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
   size_t coinbase_blob_size = get_object_blobsize(bl.miner_tx);
   size_t cumulative_block_size = coinbase_blob_size;
   //process transactions
-  if(!add_transaction_from_block(bl.miner_tx, get_transaction_hash(bl.miner_tx), id, get_current_blockchain_height(),0))
+  if(!add_transaction_from_block(bl.miner_tx, get_transaction_hash(bl.miner_tx), id, get_current_blockchain_height()))
   {
     LOG_PRINT_L0("Block with id: " << id << " failed to add transaction to blockchain storage");
     bvc.m_verifivation_failed = true;
@@ -1642,7 +1629,7 @@ bool blockchain_storage::handle_block_to_main_chain(const block& bl, const crypt
       return false;
     }
 
-    if(!add_transaction_from_block(tx, tx_id, id, get_current_blockchain_height(),tx_processed_count+1))
+    if(!add_transaction_from_block(tx, tx_id, id, get_current_blockchain_height()))
     {
        LOG_PRINT_L0("Block with id: " << id << " failed to add transaction to blockchain storage");
        cryptonote::tx_verification_context tvc = AUTO_VAL_INIT(tvc);

@@ -53,20 +53,6 @@
 #include "crypto/hash.h"
 #include "checkpoints.h"
 
-namespace boost
-{
-  namespace serialization
-  {
-    template<class Archive>
-    void serialize(Archive & ar, std::tuple<uint32_t,uint32_t,uint32_t>& v, const unsigned int version)
-    {
-      ar & std::get<0>(v);
-      ar & std::get<1>(v);
-      ar & std::get<2>(v);
-    }
-  }
-}
-
 namespace cryptonote
 {
 
@@ -201,7 +187,7 @@ namespace cryptonote
     typedef std::unordered_set<crypto::key_image> key_images_container;
     typedef std::vector<block_extended_info> blocks_container;
     typedef std::unordered_map<crypto::hash, block_extended_info> blocks_ext_by_hash;
-    typedef std::map<uint64_t, std::vector<std::tuple<uint32_t,uint32_t,uint32_t>>> outputs_container; // block, tx in block, output in tx
+    typedef std::map<uint64_t, std::vector<std::pair<crypto::hash, size_t>>> outputs_container; //crypto::hash - tx hash, size_t - index of out in transaction
 
     tx_memory_pool& m_tx_pool;
     epee::critical_section m_blockchain_lock; // TODO: add here reader/writer lock
@@ -213,12 +199,14 @@ namespace cryptonote
     key_images_container m_spent_keys;
     size_t m_current_block_cumul_sz_limit;
 
+
     // all alternative chains
     blocks_ext_by_hash m_alternative_chains; // crypto::hash -> block_extended_info
 
     // some invalid blocks
     blocks_ext_by_hash m_invalid_blocks;     // crypto::hash -> block_extended_info
     outputs_container m_outputs;
+
 
     std::string m_config_folder;
     checkpoints m_checkpoints;
@@ -239,16 +227,15 @@ namespace cryptonote
     bool validate_miner_transaction(const block& b, size_t cumulative_block_size, uint64_t fee, uint64_t& base_reward, uint64_t already_generated_coins, size_t height);
     bool validate_transaction(const block& b, uint64_t height, const transaction& tx);
     bool rollback_blockchain_switching(std::list<block>& original_chain, size_t rollback_height);
-    bool add_transaction_from_block(const transaction& tx, const crypto::hash& tx_id, const crypto::hash& bl_id, uint64_t bl_height, size_t index_in_block);
-    bool push_transaction_to_global_outs_index(const transaction& tx, const crypto::hash& tx_id, std::vector<uint64_t>& global_indexes, uint64_t bl_height, size_t index_in_block);
+    bool add_transaction_from_block(const transaction& tx, const crypto::hash& tx_id, const crypto::hash& bl_id, uint64_t bl_height);
+    bool push_transaction_to_global_outs_index(const transaction& tx, const crypto::hash& tx_id, std::vector<uint64_t>& global_indexes);
     bool pop_transaction_from_global_index(const transaction& tx, const crypto::hash& tx_id);
     bool get_last_n_blocks_sizes(std::vector<size_t>& sz, size_t count);
-    bool add_out_to_get_random_outs(std::vector<std::tuple<uint32_t,uint32_t,uint32_t>>& amount_outs, COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS::outs_for_amount& result_outs, uint64_t amount, size_t i);
+    bool add_out_to_get_random_outs(std::vector<std::pair<crypto::hash, size_t> >& amount_outs, COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS::outs_for_amount& result_outs, uint64_t amount, size_t i);
     bool is_tx_spendtime_unlocked(uint64_t unlock_time);
     bool add_block_as_invalid(const block& bl, const crypto::hash& h);
     bool add_block_as_invalid(const block_extended_info& bei, const crypto::hash& h);
-    crypto::hash get_txid_by_out_index(const std::tuple<uint32_t,uint32_t,uint32_t>& out_entry) const;
-    size_t find_end_of_allowed_index(const std::vector<std::tuple<uint32_t,uint32_t,uint32_t>>& amount_outs);
+    size_t find_end_of_allowed_index(const std::vector<std::pair<crypto::hash, size_t> >& amount_outs);
     bool check_block_timestamp_main(const block& b);
     bool check_block_timestamp(std::vector<uint64_t> timestamps, const block& b);
     uint64_t get_adjusted_time();
@@ -261,11 +248,17 @@ namespace cryptonote
   /*                                                                      */
   /************************************************************************/
 
-  #define CURRENT_BLOCKCHAIN_STORAGE_ARCHIVE_VER    13
+  #define CURRENT_BLOCKCHAIN_STORAGE_ARCHIVE_VER    12
 
   template<class archive_t>
   void blockchain_storage::serialize(archive_t & ar, const unsigned int version)
   {
+    // * ignore too-new version when reading
+    if (version > CURRENT_BLOCKCHAIN_STORAGE_ARCHIVE_VER)
+    {
+      LOG_PRINT_L0("Saved blockchain version " << version << " is too new, ignoring");
+      return;
+    }
     if(version < 11)
       return;
     CRITICAL_REGION_LOCAL(m_blockchain_lock);
@@ -274,44 +267,7 @@ namespace cryptonote
     ar & m_transactions;
     ar & m_spent_keys;
     ar & m_alternative_chains;
-    if (version < 13)
-    {
-      LOG_PRINT_L0("Upgrading blockchain format...");
-      typedef std::map<uint64_t, std::vector<std::pair<crypto::hash, size_t>>> old_outputs_container; //crypto::hash - tx hash, size_t - index of out in transaction
-      old_outputs_container old_outs;
-      ar & old_outs;
-      for (const auto& entry : old_outs)
-      {
-	if (entry.second.size() == 0) {
-	  m_outputs[entry.first];
-	}
-	for (const auto& p : entry.second)
-	{
-	  const auto& txid = p.first;
-	  const auto& tce = m_transactions[txid];
-	  const auto& bei = m_blocks[tce.m_keeper_block_height];
-	  uint32_t i=0;
-	  if (txid != get_transaction_hash(bei.bl.miner_tx))
-	  {
-	    ++i;
-	    for (const auto& t : bei.bl.tx_hashes)
-	    {
-	      if (txid == t)
-		break;
-	      ++i;
-	    }
-	    if (i > bei.bl.tx_hashes.size()) 
-	    {
-	      LOG_ERROR("Blockchain storage data corruption detected. unable to mach txid to block");
-	      throw std::runtime_error("Blockchain data corruption");
-	    }
-	  }
-	  m_outputs[entry.first].push_back(std::make_tuple((uint32_t)tce.m_keeper_block_height,i,(uint32_t)p.second));
-	}
-      }	   
-    }
-    else
-      ar & m_outputs;
+    ar & m_outputs;
     ar & m_invalid_blocks;
     ar & m_current_block_cumul_sz_limit;
     /*serialization bug workaround*/
@@ -345,36 +301,13 @@ namespace cryptonote
     }
 
 
-    size_t count =0;
-    for (const auto& vec : m_outputs)
-      count += vec.second.size();
-
-    size_t total_blob_size =0;
-    for (const auto& bei : m_blocks) {
-      total_blob_size += block_to_blob(bei.bl).size();
-      for (const auto& txid : bei.bl.tx_hashes)
-	total_blob_size += tx_to_blob(m_transactions[txid].tx).size();
-    }
-
-    size_t total_blob_size_headers =0;
-    for (const auto& bei : m_blocks) {
-      total_blob_size_headers += block_to_blob(bei.bl).size();
-      for (const auto& txid : bei.bl.tx_hashes) {
-	transaction_prefix p = m_transactions[txid].tx;
-	total_blob_size_headers += t_serializable_object_to_blob(p).size();
-      }
-    }
-
     LOG_PRINT_L2("Blockchain storage:" << ENDL << 
         "m_blocks: " << m_blocks.size() << ENDL  << 
-        "total_blob_size: " << total_blob_size << ENDL  << 
-        "total_blob_size_headers: " << total_blob_size_headers << ENDL  << 
         "m_blocks_index: " << m_blocks_index.size() << ENDL  << 
         "m_transactions: " << m_transactions.size() << ENDL  << 
         "m_spent_keys: " << m_spent_keys.size() << ENDL  << 
         "m_alternative_chains: " << m_alternative_chains.size() << ENDL  << 
         "m_outputs: " << m_outputs.size() << ENDL  << 
-        "m_outputs_total_entries: " << count << ENDL  << 
         "m_invalid_blocks: " << m_invalid_blocks.size() << ENDL  << 
         "m_current_block_cumul_sz_limit: " << m_current_block_cumul_sz_limit);
   }
@@ -390,7 +323,8 @@ namespace cryptonote
 
     std::vector<uint64_t> absolute_offsets = relative_output_offsets_to_absolute(tx_in_to_key.key_offsets);
 
-    std::vector<std::tuple<uint32_t,uint32_t,uint32_t>>& amount_outs_vec = it->second;
+
+    std::vector<std::pair<crypto::hash, size_t> >& amount_outs_vec = it->second;
     size_t count = 0;
     BOOST_FOREACH(uint64_t i, absolute_offsets)
     {
@@ -399,13 +333,11 @@ namespace cryptonote
         LOG_PRINT_L0("Wrong index in transaction inputs: " << i << ", expected maximum " << amount_outs_vec.size() - 1);
         return false;
       }
-      auto tx_id = get_txid_by_out_index(amount_outs_vec[i]);
-      transactions_container::iterator tx_it = m_transactions.find(tx_id);
-      CHECK_AND_ASSERT_MES(tx_it != m_transactions.end(), false, "Wrong transaction id in output indexes: " << tx_id);
-      size_t out_idx = std::get<2>(amount_outs_vec[i]);
-      CHECK_AND_ASSERT_MES(out_idx < tx_it->second.tx.vout.size(), false,
-        "Wrong index in transaction outputs: " << out_idx << ", expected less then " << tx_it->second.tx.vout.size());
-      if(!vis.handle_output(tx_it->second.tx, tx_it->second.tx.vout[out_idx]))
+      transactions_container::iterator tx_it = m_transactions.find(amount_outs_vec[i].first);
+      CHECK_AND_ASSERT_MES(tx_it != m_transactions.end(), false, "Wrong transaction id in output indexes: " << epee::string_tools::pod_to_hex(amount_outs_vec[i].first));
+      CHECK_AND_ASSERT_MES(amount_outs_vec[i].second < tx_it->second.tx.vout.size(), false,
+        "Wrong index in transaction outputs: " << amount_outs_vec[i].second << ", expected less then " << tx_it->second.tx.vout.size());
+      if(!vis.handle_output(tx_it->second.tx, tx_it->second.tx.vout[amount_outs_vec[i].second]))
       {
         LOG_PRINT_L0("Failed to handle_output for output no = " << count << ", with absolute offset " << i);
         return false;
