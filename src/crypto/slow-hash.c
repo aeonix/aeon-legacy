@@ -502,9 +502,6 @@ static void (*const extra_hashes[4])(const void *, size_t, char *) = {
 #define INIT_SIZE_BLK   8
 #define INIT_SIZE_BYTE (INIT_SIZE_BLK * AES_BLOCK_SIZE)
 
-extern int aesb_single_round(const uint8_t *in, uint8_t*out, const uint8_t *expandedKey);
-extern int aesb_pseudo_round(const uint8_t *in, uint8_t *out, const uint8_t *expandedKey);
-
 static size_t e2i(const uint8_t* a, size_t count) { return (*((uint64_t*)a) / AES_BLOCK_SIZE) & (count - 1); }
 
 static void mul(const uint8_t* a, const uint8_t* b, uint8_t* res) {
