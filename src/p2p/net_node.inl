@@ -129,7 +129,7 @@ namespace nodetool
     if(time(nullptr) - it->second > P2P_IP_BLOCKTIME )
     {
       m_blocked_ips.erase(it);
-      LOG_PRINT_CYAN("Ip " << epee::string_tools::get_ip_string_from_int32(addr) << "is unblocked.", LOG_LEVEL_0);
+      LOG_PRINT_CYAN("Ip " << epee::string_tools::get_ip_string_from_int32(addr) << " is unblocked.", LOG_LEVEL_0);
       return true;
     }
     return false;
