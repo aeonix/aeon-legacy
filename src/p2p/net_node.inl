@@ -64,6 +64,7 @@ namespace nodetool
                                                                                                   " If this option is given the options add-priority-node and seed-node are ignored"};
     const command_line::arg_descriptor<std::vector<std::string> > arg_p2p_seed_node   = {"seed-node", "Connect to a node to retrieve peer addresses, and disconnect"};
     const command_line::arg_descriptor<bool> arg_p2p_hide_my_port   =    {"hide-my-port", "Do not announce yourself as peerlist candidate", false, true};
+    const command_line::arg_descriptor<bool>        arg_no_igd				= {"no-igd", "Disable UPnP port mapping"};
   }
 
   //-----------------------------------------------------------------------------------
@@ -78,7 +79,9 @@ namespace nodetool
     command_line::add_arg(desc, arg_p2p_add_priority_node);
     command_line::add_arg(desc, arg_p2p_add_exclusive_node);
     command_line::add_arg(desc, arg_p2p_seed_node);    
-    command_line::add_arg(desc, arg_p2p_hide_my_port);   }
+    command_line::add_arg(desc, arg_p2p_hide_my_port);
+    command_line::add_arg(desc, arg_no_igd);
+  }
   //-----------------------------------------------------------------------------------
   template<class t_payload_net_handler>
   bool node_server<t_payload_net_handler>::init_config()
@@ -180,6 +183,7 @@ namespace nodetool
     m_port = command_line::get_arg(vm, arg_p2p_bind_port);
     m_external_port = command_line::get_arg(vm, arg_p2p_external_port);
     m_allow_local_ip = command_line::get_arg(vm, arg_p2p_allow_local_ip);
+    m_no_igd = command_line::get_arg(vm, arg_no_igd);
 
     if (command_line::has_arg(vm, arg_p2p_add_peer))
     {       
@@ -301,36 +305,37 @@ namespace nodetool
       LOG_PRINT_L0("External port defined as " << m_external_port);
 
     // Add UPnP port mapping
-    LOG_PRINT_L0("Attempting to add IGD port mapping.");
-    int result;
-    UPNPDev* deviceList = upnpDiscover(1000, NULL, NULL, 0, 0, &result);
-    UPNPUrls urls;
-    IGDdatas igdData;
-    char lanAddress[64];
-    result = UPNP_GetValidIGD(deviceList, &urls, &igdData, lanAddress, sizeof lanAddress);
-    freeUPNPDevlist(deviceList);
-    if (result != 0) {
-      if (result == 1) {
-        std::ostringstream portString;
-        portString << m_listenning_port;
-        if (UPNP_AddPortMapping(urls.controlURL, igdData.first.servicetype, portString.str().c_str(), portString.str().c_str(), lanAddress, CRYPTONOTE_NAME, "TCP", 0, "0") != 0) {
-          LOG_ERROR("UPNP_AddPortMapping failed.");
-        } else {
-          LOG_PRINT_GREEN("Added IGD port mapping.", LOG_LEVEL_0);
-        }
-      } else if (result == 2) {
-        LOG_PRINT_L0("IGD was found but reported as not connected.");
-      } else if (result == 3) {
-        LOG_PRINT_L0("UPnP device was found but not recoginzed as IGD.");
+    if (m_no_igd == false) {
+      LOG_PRINT_L0("Attempting to add IGD port mapping.");
+      int result;
+      UPNPDev* deviceList = upnpDiscover(1000, NULL, NULL, 0, 0, &result);
+      UPNPUrls urls;
+      IGDdatas igdData;
+      char lanAddress[64];
+      result = UPNP_GetValidIGD(deviceList, &urls, &igdData, lanAddress, sizeof lanAddress);
+      freeUPNPDevlist(deviceList);
+      if (result != 0) {
+	if (result == 1) {
+	  std::ostringstream portString;
+	  portString << m_listenning_port;
+	  if (UPNP_AddPortMapping(urls.controlURL, igdData.first.servicetype, portString.str().c_str(), portString.str().c_str(), lanAddress, CRYPTONOTE_NAME, "TCP", 0, "0") != 0) {
+	    LOG_ERROR("UPNP_AddPortMapping failed.");
+	  } else {
+	    LOG_PRINT_GREEN("Added IGD port mapping.", LOG_LEVEL_0);
+	  }
+	} else if (result == 2) {
+	  LOG_PRINT_L0("IGD was found but reported as not connected.");
+	} else if (result == 3) {
+	  LOG_PRINT_L0("UPnP device was found but not recoginzed as IGD.");
+	} else {
+	  LOG_ERROR("UPNP_GetValidIGD returned an unknown result code.");
+	}
+
+	FreeUPNPUrls(&urls);
       } else {
-        LOG_ERROR("UPNP_GetValidIGD returned an unknown result code.");
+	LOG_PRINT_L0("No IGD was found.");
       }
-
-      FreeUPNPUrls(&urls);
-    } else {
-      LOG_PRINT_L0("No IGD was found.");
     }
-
     return res;
   }
   //-----------------------------------------------------------------------------------
