@@ -143,3 +143,7 @@ void sc_sub(unsigned char *, const unsigned char *, const unsigned char *);
 void sc_mulsub(unsigned char *, const unsigned char *, const unsigned char *, const unsigned char *);
 int sc_check(const unsigned char *);
 int sc_isnonzero(const unsigned char *); /* Doesn't normalize */
+
+// internal
+uint64_t load_3(const unsigned char *in);
+uint64_t load_4(const unsigned char *in);
