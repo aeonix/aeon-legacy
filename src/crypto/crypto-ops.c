@@ -50,7 +50,7 @@ static void fe_divpowm1(fe, const fe, const fe);
 
 /* Common functions */
 
-static uint64_t load_3(const unsigned char *in) {
+uint64_t load_3(const unsigned char *in) {
   uint64_t result;
   result = (uint64_t) in[0];
   result |= ((uint64_t) in[1]) << 8;
@@ -58,7 +58,7 @@ static uint64_t load_3(const unsigned char *in) {
   return result;
 }
 
-static uint64_t load_4(const unsigned char *in)
+uint64_t load_4(const unsigned char *in)
 {
   uint64_t result;
   result = (uint64_t) in[0];

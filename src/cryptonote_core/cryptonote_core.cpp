@@ -41,6 +41,7 @@ using namespace epee;
 #include "cryptonote_config.h"
 #include "cryptonote_format_utils.h"
 #include "misc_language.h"
+#include "ringct/rctOps.h"
 
 DISABLE_VS_WARNINGS(4355)
 
@@ -176,6 +177,25 @@ namespace cryptonote
     }
     //std::cout << "!"<< tx.vin.size() << std::endl;
 
+    if (bad_semantics_txes.find(tx_hash) != bad_semantics_txes.end())
+    {
+      LOG_PRINT_L1("Transaction already seen with bad semantics, rejected");
+      tvc.m_verifivation_failed = true;
+      return false;
+    }
+
+    if(m_mempool.have_tx(tx_hash))
+    {
+      LOG_PRINT_L2("tx " << tx_hash << "already have transaction in tx_pool");
+      return true;
+    }
+
+    if(m_blockchain_storage.have_tx(tx_hash))
+    {
+      LOG_PRINT_L2("tx " << tx_hash << " already have transaction in blockchain");
+      return true;
+    }
+
     if(!check_tx_syntax(tx))
     {
       LOG_PRINT_L0("WRONG TRANSACTION BLOB, Failed to check tx " << tx_hash << " syntax, rejected");
@@ -187,6 +207,7 @@ namespace cryptonote
     {
       LOG_PRINT_L0("WRONG TRANSACTION BLOB, Failed to check tx " << tx_hash << " semantic, rejected");
       tvc.m_verifivation_failed = true;
+      bad_semantics_txes.insert(tx_hash);
       return false;
     }
 
@@ -261,6 +282,11 @@ namespace cryptonote
       return false;
     }
 
+    if (!check_tx_inputs_keyimages_domain(tx))
+    {
+      LOG_PRINT_RED_L0("tx uses key image not in the valid domain");
+      return false;
+    }
 
     return true;
   }
@@ -274,6 +300,18 @@ namespace cryptonote
       if(!ki.insert(tokey_in.k_image).second)
         return false;
     }
+    return true;
+  }
+  //-----------------------------------------------------------------------------------------------
+  bool core::check_tx_inputs_keyimages_domain(const transaction& tx) const
+  {
+    std::unordered_set<crypto::key_image> ki;
+    for(const auto& in: tx.vin)
+      {
+	CHECKED_GET_SPECIFIC_VARIANT(in, const txin_to_key, tokey_in, false);
+	if (!(rct::scalarmultKey(rct::ki2rct(tokey_in.k_image), rct::curveOrder()) == rct::identity()))
+	  return false;
+      }
     return true;
   }
   //-----------------------------------------------------------------------------------------------

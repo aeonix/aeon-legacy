@@ -139,7 +139,7 @@ namespace cryptonote
      bool handle_command_line(const boost::program_options::variables_map& vm);
      bool on_update_blocktemplate_interval();
      bool check_tx_inputs_keyimages_diff(const transaction& tx);
-
+     bool check_tx_inputs_keyimages_domain(const transaction& tx) const;
 
      tx_memory_pool m_mempool;
      blockchain_storage m_blockchain_storage;
@@ -155,6 +155,8 @@ namespace cryptonote
      std::atomic<bool> m_starter_message_showed;
 
      uint64_t m_target_blockchain_height;
+
+     std::unordered_set<crypto::hash> bad_semantics_txes;
    };
 }
 
