@@ -436,15 +436,17 @@ bool blockchain_storage::switch_to_alternative_blockchain(std::list<blocks_ext_b
     {
       LOG_PRINT_L0("Failed to switch to alternative blockchain");
       rollback_blockchain_switching(disconnected_chain, split_height);
-      add_block_as_invalid(ch_ent->second, get_block_hash(ch_ent->second.bl));
+      // dont add block as invalid here because failure may be temporary
+      //add_block_as_invalid(ch_ent->second, get_block_hash(ch_ent->second.bl));
       LOG_PRINT_L0("The block was inserted as invalid while connecting new alternative chain,  block_id: " << get_block_hash(ch_ent->second.bl));
-      m_alternative_chains.erase(ch_ent);
+      m_alternative_chains.erase(*alt_ch_iter++);
 
-      for(auto alt_ch_to_orph_iter = ++alt_ch_iter; alt_ch_to_orph_iter != alt_chain.end(); alt_ch_to_orph_iter++)
+      for(auto alt_ch_to_orph_iter = alt_ch_iter; alt_ch_to_orph_iter != alt_chain.end(); )
       {
         //block_verification_context bvc = boost::value_initialized<block_verification_context>();
-        add_block_as_invalid((*alt_ch_iter)->second, (*alt_ch_iter)->first);
-        m_alternative_chains.erase(*alt_ch_to_orph_iter);
+	// dont add block as invalid here because failure may be temporary
+        //add_block_as_invalid((*alt_ch_to_orph_iter)->second, (*alt_ch_to_orph_iter)->first);
+        m_alternative_chains.erase(*alt_ch_to_orph_iter++);
       }
       return false;
     }
@@ -1322,6 +1324,9 @@ bool blockchain_storage::add_transaction_from_block(const transaction& tx, const
       return false;
     }
   }
+
+  CHECK_AND_ASSERT_MES(tx_id == get_transaction_hash(tx),false,"refusing to insert transaction with wrong hash");
+
   transaction_chain_entry ch_e;
   ch_e.m_keeper_block_height = bl_height;
   ch_e.tx = tx;

@@ -243,7 +243,9 @@ namespace cryptonote
          (tx_age > CRYPTONOTE_MEMPOOL_TX_FROM_ALT_BLOCK_LIVETIME && it->second.kept_by_block) )
       {
         LOG_PRINT_L0("Tx " << it->first << " removed from tx pool due to outdated, age: " << tx_age );
-        m_transactions.erase(it++);
+	remove_transaction_keyimages(it->second.tx);
+	auto pit = it++;
+        m_transactions.erase(pit);
       }else
         ++it;
     }
