@@ -61,6 +61,21 @@ bool blockchain_storage::have_tx(const crypto::hash &id)
   return m_transactions.find(id) != m_transactions.end();
 }
 //------------------------------------------------------------------
+bool blockchain_storage::get_keeper_block_height(const crypto::hash &id, uint64_t &keeper_block_height)
+{
+  CRITICAL_REGION_LOCAL(m_blockchain_lock);
+  auto it = m_transactions.find(id);
+  if (it != m_transactions.end())
+  {
+    keeper_block_height = it->second.m_keeper_block_height;
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+//------------------------------------------------------------------
 bool blockchain_storage::have_tx_keyimg_as_spent(const crypto::key_image &key_im)
 {
   CRITICAL_REGION_LOCAL(m_blockchain_lock);
