@@ -99,6 +99,7 @@ namespace cryptonote
     template<class archive_t>
     void serialize(archive_t & ar, const unsigned int version);
 
+    bool get_keeper_block_height(const crypto::hash &txid, uint64_t &keeper_block_height);
     bool have_tx(const crypto::hash &id);
     bool have_tx_keyimges_as_spent(const transaction &tx);
     bool have_tx_keyimg_as_spent(const crypto::key_image &key_im);

@@ -54,6 +54,7 @@ public:
     //m_cmd_binder.set_handler("print_bc_outs", boost::bind(&daemon_cmmands_handler::print_bc_outs, this, _1));
     m_cmd_binder.set_handler("print_block", boost::bind(&daemon_cmmands_handler::print_block, this, _1), "Print block, print_block <block_hash> | <block_height>");
     m_cmd_binder.set_handler("print_tx", boost::bind(&daemon_cmmands_handler::print_tx, this, _1), "Print transaction, print_tx <transaction_hash>");
+    m_cmd_binder.set_handler("check_tx", boost::bind(&daemon_cmmands_handler::check_tx, this, _1), "Check if transaction confirmed, check_tx <transaction_hash>");
     m_cmd_binder.set_handler("start_mining", boost::bind(&daemon_cmmands_handler::start_mining, this, _1), "Start mining for specified address, start_mining <addr> [threads=1]");
     m_cmd_binder.set_handler("stop_mining", boost::bind(&daemon_cmmands_handler::stop_mining, this, _1), "Stop mining");
     m_cmd_binder.set_handler("print_pool", boost::bind(&daemon_cmmands_handler::print_pool, this, _1), "Print transaction pool (long format)");
@@ -305,6 +306,35 @@ private:
       print_block_by_hash(arg);
     }
 
+    return true;
+  }
+  //--------------------------------------------------------------------------------
+  bool check_tx(const std::vector<std::string>& args)
+  {
+    if (args.empty())
+    {
+      std::cout << "expected: check_tx <transaction hash>" << std::endl;
+      return true;
+    }
+
+    const std::string& str_hash = args.front();
+    crypto::hash tx_hash;
+    if (!parse_hash256(str_hash, tx_hash))
+    {
+      return true;
+    }
+
+    uint64_t keeper_block_height;
+
+    if (m_srv.get_payload_object().get_core().get_blockchain_storage().get_keeper_block_height(tx_hash, keeper_block_height))
+    {
+      uint64_t height = m_srv.get_payload_object().get_core().get_blockchain_storage().get_current_blockchain_height();
+      std::cout << "transaction <" << str_hash << "> found on chain at block height " << keeper_block_height << " (" << height-keeper_block_height << " conf)" << std::endl;
+    }
+    else
+    {
+      std::cout << "transaction wasn't found on chain: <" << str_hash << '>' << std::endl;
+    }
     return true;
   }
   //--------------------------------------------------------------------------------
