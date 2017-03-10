@@ -979,7 +979,7 @@ bool simple_wallet::transfer(const std::vector<std::string> &args_)
     writer << "not enough outputs for specified mixin_count = " << e.mixin_count() << ":";
     for (const cryptonote::COMMAND_RPC_GET_RANDOM_OUTPUTS_FOR_AMOUNTS::outs_for_amount& outs_for_amount : e.scanty_outs())
     {
-      writer << "\noutput amount = " << print_money(outs_for_amount.amount) << ", fount outputs to mix = " << outs_for_amount.outs.size();
+      writer << "\noutput amount = " << print_money(outs_for_amount.amount) << ", found outputs to mix = " << outs_for_amount.outs.size();
     }
   }
   catch (const tools::error::tx_not_constructed&)
