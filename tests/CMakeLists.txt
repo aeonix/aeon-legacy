@@ -31,7 +31,7 @@ add_executable(unit_tests ${UNIT_TESTS})
 add_executable(net_load_tests_clt net_load_tests/clt.cpp)
 add_executable(net_load_tests_srv net_load_tests/srv.cpp)
 
-target_link_libraries(core_proxy cryptonote_core common crypto upnpc-static ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
+target_link_libraries(core_proxy cryptonote_core common crypto libminiupnpc-static ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
 target_link_libraries(coretests cryptonote_core common crypto ringct ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
 target_link_libraries(difficulty-tests cryptonote_core)
 target_link_libraries(functional_tests cryptonote_core wallet common crypto ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})

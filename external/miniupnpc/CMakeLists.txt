@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 2.6)
 
 project (miniupnpc C)
-set (MINIUPNPC_VERSION 1.9)
-set (MINIUPNPC_API_VERSION 10)
+set (MINIUPNPC_VERSION 2.0)
+set (MINIUPNPC_API_VERSION 16)
 
 if (NOT CMAKE_BUILD_TYPE)
   if (WIN32)
@@ -30,13 +30,17 @@ endif (NO_GETADDRINFO)
 
 if (NOT WIN32)
   add_definitions (-DMINIUPNPC_SET_SOCKET_TIMEOUT)
-  add_definitions (-D_BSD_SOURCE -D_POSIX_C_SOURCE=1)
+  add_definitions (-D_BSD_SOURCE -D_DEFAULT_SOURCE)
+  if (NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND NOT CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
+    # add_definitions (-D_POSIX_C_SOURCE=200112L)
+    add_definitions (-D_XOPEN_SOURCE=600)
+  endif (NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND NOT CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
 else (NOT WIN32)
   add_definitions (-D_WIN32_WINNT=0x0501) # XP or higher for getnameinfo and friends
 endif (NOT WIN32)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-  add_definitions (-DMACOSX -D_DARWIN_C_SOURCE)
+  add_definitions (-D_DARWIN_C_SOURCE)
 endif ()
 
 # Set compiler specific build flags
@@ -62,17 +66,18 @@ if (CMAKE_COMPILER_IS_GNUC)
   endif (NOT CONFIGURED)
 endif ()
 
-configure_file (miniupnpcstrings.h.cmake ${CMAKE_BINARY_DIR}/miniupnpcstrings.h)
-include_directories (${CMAKE_BINARY_DIR})
+configure_file (${CMAKE_CURRENT_SOURCE_DIR}/miniupnpcstrings.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/miniupnpcstrings.h)
+include_directories (${CMAKE_CURRENT_BINARY_DIR})
 
 set (MINIUPNPC_SOURCES
   igd_desc_parse.c
   miniupnpc.c
   minixml.c
   minisoap.c
+  minissdpc.c
   miniwget.c
-  upnpc.c
   upnpcommands.c
+  upnpdev.c
   upnpreplyparse.c
   upnperrors.c
   connecthostport.c
@@ -86,16 +91,13 @@ endif (NOT WIN32 AND NOT CMAKE_SYSTEM_NAME STREQUAL "AmigaOS")
 
 if (WIN32)
   set_source_files_properties (${MINIUPNPC_SOURCES} PROPERTIES
-                                                    COMPILE_DEFINITIONS STATICLIB
-                                                    COMPILE_DEFINITIONS MINIUPNP_EXPORTS
+                                                    COMPILE_DEFINITIONS "MINIUPNP_STATICLIB;MINIUPNP_EXPORTS"
   )
 endif (WIN32)
 
 if (WIN32)
-#  find_library (WINSOCK2_LIBRARY NAMES ws2_32 WS2_32 Ws2_32)
-#  find_library (IPHLPAPI_LIBRARY NAMES iphlpapi)
-  set(WINSOCK2_LIBRARY ws2_32)
-  set(IPHLPAPI_LIBRARY iphlpapi)
+  find_library (WINSOCK2_LIBRARY NAMES ws2_32 WS2_32 Ws2_32)
+  find_library (IPHLPAPI_LIBRARY NAMES iphlpapi)
   set (LDLIBS ${WINSOCK2_LIBRARY} ${IPHLPAPI_LIBRARY} ${LDLIBS})
 #elseif (CMAKE_SYSTEM_NAME STREQUAL "Solaris")
 #  find_library (SOCKET_LIBRARY NAMES socket)
@@ -109,21 +111,25 @@ if (NOT UPNPC_BUILD_STATIC AND NOT UPNPC_BUILD_SHARED)
 endif (NOT UPNPC_BUILD_STATIC AND NOT UPNPC_BUILD_SHARED)
 
 if (UPNPC_BUILD_STATIC)
-  add_library (upnpc-static STATIC ${MINIUPNPC_SOURCES})
-  set_target_properties (upnpc-static PROPERTIES OUTPUT_NAME "miniupnpc")
-  target_link_libraries (upnpc-static ${LDLIBS})
-  set (UPNPC_INSTALL_TARGETS ${UPNPC_INSTALL_TARGETS} upnpc-static)
-  set (UPNPC_LIBRARY_TARGET upnpc-static)
+  add_library (libminiupnpc-static STATIC ${MINIUPNPC_SOURCES})
+  set_target_properties (libminiupnpc-static PROPERTIES OUTPUT_NAME "miniupnpc")
+  target_link_libraries (libminiupnpc-static ${LDLIBS})
+  set (UPNPC_INSTALL_TARGETS ${UPNPC_INSTALL_TARGETS} libminiupnpc-static)
+  set (UPNPC_LIBRARY_TARGET libminiupnpc-static)
+  add_executable (upnpc-static upnpc.c)
+  target_link_libraries (upnpc-static LINK_PRIVATE libminiupnpc-static)
 endif (UPNPC_BUILD_STATIC)
 
 if (UPNPC_BUILD_SHARED)
-  add_library (upnpc-shared SHARED ${MINIUPNPC_SOURCES})
-  set_target_properties (upnpc-shared PROPERTIES OUTPUT_NAME "miniupnpc")
-  set_target_properties (upnpc-shared PROPERTIES VERSION ${MINIUPNPC_VERSION})
-  set_target_properties (upnpc-shared PROPERTIES SOVERSION ${MINIUPNPC_API_VERSION})
-  target_link_libraries (upnpc-shared ${LDLIBS})
-  set (UPNPC_INSTALL_TARGETS ${UPNPC_INSTALL_TARGETS} upnpc-shared)
-  set (UPNPC_LIBRARY_TARGET upnpc-shared)
+  add_library (libminiupnpc-shared SHARED ${MINIUPNPC_SOURCES})
+  set_target_properties (libminiupnpc-shared PROPERTIES OUTPUT_NAME "miniupnpc")
+  set_target_properties (libminiupnpc-shared PROPERTIES VERSION ${MINIUPNPC_VERSION})
+  set_target_properties (libminiupnpc-shared PROPERTIES SOVERSION ${MINIUPNPC_API_VERSION})
+  target_link_libraries (libminiupnpc-shared ${LDLIBS})
+  set (UPNPC_INSTALL_TARGETS ${UPNPC_INSTALL_TARGETS} libminiupnpc-shared)
+  set (UPNPC_LIBRARY_TARGET libminiupnpc-shared)
+  add_executable (upnpc-shared upnpc.c)
+  target_link_libraries (upnpc-shared LINK_PRIVATE libminiupnpc-shared)
 endif (UPNPC_BUILD_SHARED)
 
 if (UPNPC_BUILD_TESTS)
@@ -167,7 +173,10 @@ install (FILES
   igd_desc_parse.h
   upnpreplyparse.h
   upnperrors.h
-  declspec.h
+  upnpdev.h
+  miniupnpctypes.h
+  portlistingparse.h
+  miniupnpc_declspec.h
   DESTINATION include/miniupnpc
 )
 
