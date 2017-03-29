@@ -134,6 +134,8 @@ namespace cryptonote
     uint64_t get_current_comulative_blocksize_limit();
     bool is_storing_blockchain(){return m_is_blockchain_storing;}
     uint64_t block_difficulty(size_t i);
+    void lock() const;
+    void unlock() const;
 
     template<class t_ids_container, class t_blocks_container, class t_missed_container>
     bool get_blocks(const t_ids_container& block_ids, t_blocks_container& blocks, t_missed_container& missed_bs)
@@ -190,7 +192,7 @@ namespace cryptonote
     typedef std::map<uint64_t, std::vector<std::pair<crypto::hash, size_t>>> outputs_container; //crypto::hash - tx hash, size_t - index of out in transaction
 
     tx_memory_pool& m_tx_pool;
-    epee::critical_section m_blockchain_lock; // TODO: add here reader/writer lock
+    mutable epee::critical_section m_blockchain_lock; // TODO: add here reader/writer lock
 
     // main chain
     blocks_container m_blocks;               // height  -> block_extended_info
