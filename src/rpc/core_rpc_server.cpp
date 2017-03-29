@@ -245,13 +245,17 @@ namespace cryptonote
 
     cryptonote_connection_context fake_context = AUTO_VAL_INIT(fake_context);
     tx_verification_context tvc = AUTO_VAL_INIT(tvc);
-    if(!m_core.handle_incoming_tx(tx_blob, tvc, false))
     {
-      LOG_PRINT_L0("[on_send_raw_tx]: Failed to process tx");
-      res.status = "Failed";
-      return true;
-    }
+      CRITICAL_REGION_LOCAL(m_core.get_mempool());
+      CRITICAL_REGION_LOCAL1(m_core.get_blockchain_storage());
 
+      if(!m_core.handle_incoming_tx(tx_blob, tvc, false))
+      {
+	LOG_PRINT_L0("[on_send_raw_tx]: Failed to process tx");
+	res.status = "Failed";
+	return true;
+      }
+    }
     if(tvc.m_verifivation_failed)
     {
       LOG_PRINT_L0("[on_send_raw_tx]: tx verification failed");

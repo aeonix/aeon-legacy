@@ -116,6 +116,9 @@ namespace cryptonote
     uint64_t max_used_block_height = 0;
     bool ch_inp_res = m_blockchain.check_tx_inputs(tx, max_used_block_height, max_used_block_id);
     CRITICAL_REGION_LOCAL(m_transactions_lock);
+
+    CHECK_AND_ASSERT_MES(id == get_transaction_hash(tx),false,"refusing to add tx with mismatched hash to pool");
+
     if(!ch_inp_res)
     {
       if(kept_by_block)
@@ -217,6 +220,8 @@ namespace cryptonote
     auto it = m_transactions.find(id);
     if(it == m_transactions.end())
       return false;
+
+    CHECK_AND_ASSERT_MES(id == get_transaction_hash(it->second.tx),false,"refusing to take tx with mismatched id");
 
     tx = it->second.tx;
     blob_size = it->second.blob_size;
@@ -493,6 +498,7 @@ namespace cryptonote
     }
 
     for (auto it = m_transactions.begin(); it != m_transactions.end(); ) {
+      CHECK_AND_ASSERT_MES(it->first == get_transaction_hash(it->second.tx),false,"corrupt tx pool containing id != hash");
       auto it2 = it++;
       if (it2->second.blob_size >= TRANSACTION_SIZE_LIMIT) {
         LOG_PRINT_L0("Transaction " << get_transaction_hash(it2->second.tx) << " is too big (" << it2->second.blob_size << " bytes), removing it from pool");

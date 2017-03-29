@@ -51,6 +51,22 @@ namespace tests
           : height(_height), id(_id), longhash(_longhash), blk(_blk), blob(_blob), txes(_txes) { }
   };
 
+  class fake_mempool
+  {
+  public:
+    void lock() {}
+    void unlock() {}
+  };
+  class fake_blockchain
+  {
+  public:
+    void lock() {}
+    void unlock() {}
+  };
+
+  fake_mempool m_mempool;
+  fake_blockchain m_blockchain;
+
   class proxy_core
   {
       cryptonote::block m_genesis;
@@ -65,6 +81,8 @@ namespace tests
       
 
   public:
+    fake_blockchain& get_blockchain_storage() {return m_blockchain;}
+    fake_mempool& get_mempool() {return m_mempool;}
     void on_synchronized(){}
     uint64_t get_current_blockchain_height(){return 1;}
     void set_target_blockchain_height(uint64_t) {}
@@ -75,6 +93,8 @@ namespace tests
     bool have_block(const crypto::hash& id);
     bool get_blockchain_top(uint64_t& height, crypto::hash& top_id);
     bool handle_incoming_tx(const cryptonote::blobdata& tx_blob, cryptonote::tx_verification_context& tvc, bool keeped_by_block);
+    bool parse_incoming_blockblob(const cryptonote::blobdata& block_blob, cryptonote::block &b, cryptonote::block_verification_context& bvc);
+    bool handle_incoming_block(const cryptonote::block& b, cryptonote::block_verification_context& bvc, bool update_miner_blocktemplate = true);
     bool handle_incoming_block(const cryptonote::blobdata& block_blob, cryptonote::block_verification_context& bvc, bool update_miner_blocktemplate = true);
     void pause_mine(){}
     void resume_mine(){}

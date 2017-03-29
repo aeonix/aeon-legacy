@@ -186,14 +186,20 @@ bool tests::proxy_core::handle_incoming_tx(const cryptonote::blobdata& tx_blob, 
     return true;
 }
 
-bool tests::proxy_core::handle_incoming_block(const cryptonote::blobdata& block_blob, cryptonote::block_verification_context& bvc, bool update_miner_blocktemplate) {
-    block b = AUTO_VAL_INIT(b);
-
+bool tests::proxy_core::parse_incoming_blockblob(const cryptonote::blobdata& block_blob, cryptonote::block &b, cryptonote::block_verification_context& bvc) {
     if(!parse_and_validate_block_from_blob(block_blob, b)) {
         cerr << "Failed to parse and validate new block" << endl;
         return false;
     }
+    return true;
+}
 
+bool tests::proxy_core::handle_incoming_block(const cryptonote::blobdata& block_blob, cryptonote::block_verification_context& bvc, bool update_miner_blocktemplate) {
+  cryptonote::block b;
+  return parse_incoming_blockblob(block_blob,b,bvc) && handle_incoming_block(b,bvc,update_miner_blocktemplate);
+}
+
+bool tests::proxy_core::handle_incoming_block(const cryptonote::block& b, cryptonote::block_verification_context& bvc, bool update_miner_blocktemplate) {
     crypto::hash h;
     crypto::hash lh;
     cout << "BLOCK" << endl << endl;
@@ -202,11 +208,11 @@ bool tests::proxy_core::handle_incoming_block(const cryptonote::blobdata& block_
     cout << get_transaction_hash(b.miner_tx) << endl;
     cout << ::get_object_blobsize(b.miner_tx) << endl;
     //cout << string_tools::buff_to_hex_nodelimer(block_blob) << endl;
-    cout << obj_to_json_str(b) << endl;
+    cout << obj_to_json_str((block&)b) << endl;
 
     cout << endl << "ENDBLOCK" << endl << endl;
 
-    if (!add_block(h, lh, b, block_blob))
+    if (!add_block(h, lh, b, block_to_blob(b)))
         return false;
 
     return true;

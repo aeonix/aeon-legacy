@@ -155,26 +155,35 @@ namespace cryptonote
   bool core::handle_incoming_tx(const blobdata& tx_blob, tx_verification_context& tvc, bool keeped_by_block)
   {
     tvc = boost::value_initialized<tx_verification_context>();
-    //want to process all transactions sequentially
-    CRITICAL_REGION_LOCAL(m_incoming_tx_lock);
-
+    
+    crypto::hash tx_hash = null_hash;
+    crypto::hash tx_prefixt_hash = null_hash;
+    transaction tx;
+    return parse_incoming_txblob(tx_blob,tx,tx_hash,tx_prefixt_hash,tvc) && handle_incoming_tx(tx,tx_blob.size(),tx_hash,tx_prefixt_hash,tvc,keeped_by_block);
+  }
+  //-----------------------------------------------------------------------------------------------
+  bool core::parse_incoming_txblob(const blobdata& tx_blob, transaction& tx, crypto::hash& tx_hash, crypto::hash& tx_prefixt_hash, tx_verification_context& tvc)
+  {
     if(tx_blob.size() > get_max_tx_size())
     {
       LOG_PRINT_L0("WRONG TRANSACTION BLOB, too big size " << tx_blob.size() << ", rejected");
       tvc.m_verifivation_failed = true;
       return false;
     }
-
-    crypto::hash tx_hash = null_hash;
-    crypto::hash tx_prefixt_hash = null_hash;
-    transaction tx;
-
     if(!parse_tx_from_blob(tx, tx_hash, tx_prefixt_hash, tx_blob))
     {
       LOG_PRINT_L0("WRONG TRANSACTION BLOB, Failed to parse, rejected");
       tvc.m_verifivation_failed = true;
       return false;
     }
+    return true;
+  }
+  //-----------------------------------------------------------------------------------------------
+  bool core::handle_incoming_tx(const transaction& tx, size_t blob_size, const crypto::hash& tx_hash, const crypto::hash tx_prefixt_hash, tx_verification_context& tvc, bool keeped_by_block)
+  {
+    //want to process all transactions sequentially
+    CRITICAL_REGION_LOCAL(m_incoming_tx_lock);
+
     //std::cout << "!"<< tx.vin.size() << std::endl;
 
     if (bad_semantics_txes.find(tx_hash) != bad_semantics_txes.end())
@@ -211,7 +220,7 @@ namespace cryptonote
       return false;
     }
 
-    bool r = add_new_tx(tx, tx_hash, tx_prefixt_hash, tx_blob.size(), tvc, keeped_by_block);
+    bool r = add_new_tx(tx, tx_hash, tx_prefixt_hash, blob_size, tvc, keeped_by_block);
     if(tvc.m_verifivation_failed)
     {LOG_PRINT_RED_L0("Transaction verification failed: " << tx_hash);}
     else if(tvc.m_verifivation_impossible)
@@ -453,7 +462,7 @@ namespace cryptonote
     return m_blockchain_storage.add_new_block(b, bvc);
   }
   //-----------------------------------------------------------------------------------------------
-  bool core::handle_incoming_block(const blobdata& block_blob, block_verification_context& bvc, bool update_miner_blocktemplate)
+  bool core::parse_incoming_blockblob(const blobdata& block_blob, block &b, block_verification_context &bvc)
   {
     bvc = boost::value_initialized<block_verification_context>();
     if(block_blob.size() > get_max_block_size())
@@ -463,13 +472,23 @@ namespace cryptonote
       return false;
     }
 
-    block b = AUTO_VAL_INIT(b);
     if(!parse_and_validate_block_from_blob(block_blob, b))
     {
       LOG_PRINT_L0("Failed to parse and validate new block");
       bvc.m_verifivation_failed = true;
       return false;
     }
+    return true;
+  }
+  //-----------------------------------------------------------------------------------------------
+  bool core::handle_incoming_block(const blobdata &block_blob, block_verification_context& bvc, bool update_miner_blocktemplate)
+  {
+    block b = AUTO_VAL_INIT(b);
+    return parse_incoming_blockblob(block_blob,b,bvc) && handle_incoming_block(b,bvc,update_miner_blocktemplate);
+  }
+  //-----------------------------------------------------------------------------------------------
+  bool core::handle_incoming_block(const block &b, block_verification_context& bvc, bool update_miner_blocktemplate)
+  {
     add_new_block(b, bvc);
     if(update_miner_blocktemplate && bvc.m_added_to_main_chain)
        update_miner_block_template();

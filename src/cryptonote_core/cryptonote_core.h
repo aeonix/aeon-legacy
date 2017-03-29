@@ -58,8 +58,12 @@ namespace cryptonote
      core(i_cryptonote_protocol* pprotocol);
      bool handle_get_objects(NOTIFY_REQUEST_GET_OBJECTS::request& arg, NOTIFY_RESPONSE_GET_OBJECTS::request& rsp, cryptonote_connection_context& context);
      bool on_idle();
+     bool handle_incoming_tx(const transaction& tx, size_t blob_size, const crypto::hash& tx_hash, const crypto::hash tx_prefixt_hash, tx_verification_context& tvc, bool keeped_by_block);
      bool handle_incoming_tx(const blobdata& tx_blob, tx_verification_context& tvc, bool keeped_by_block);
-     bool handle_incoming_block(const blobdata& block_blob, block_verification_context& bvc, bool update_miner_blocktemplate = true);
+     bool parse_incoming_txblob(const blobdata& tx_blob, transaction& tx, crypto::hash& tx_hash, crypto::hash& tx_prefixt_hash, tx_verification_context& tvc);
+     bool parse_incoming_blockblob(const blobdata& block_blob, block &b, block_verification_context &bvc);
+     bool handle_incoming_block(const blobdata &block_blob, block_verification_context& bvc, bool update_miner_blocktemplate = true);
+     bool handle_incoming_block(const block& block_blob, block_verification_context& bvc, bool update_miner_blocktemplate = true);
      bool check_incoming_block_size(const blobdata& block_blob);
      i_cryptonote_protocol* get_protocol(){return m_pprotocol;}
 
@@ -109,6 +113,7 @@ namespace cryptonote
      void pause_mine();
      void resume_mine();
      blockchain_storage& get_blockchain_storage(){return m_blockchain_storage;}
+     tx_memory_pool& get_mempool(){return m_mempool;}
      //debug functions
      void print_blockchain(uint64_t start_index, uint64_t end_index);
      void print_blockchain_index();

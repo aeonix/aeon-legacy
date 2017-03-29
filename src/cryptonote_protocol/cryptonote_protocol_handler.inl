@@ -220,6 +220,9 @@ namespace cryptonote
     if(context.m_state != cryptonote_connection_context::state_normal)
       return 1;
 
+    CRITICAL_REGION_LOCAL(m_core.get_mempool());
+    CRITICAL_REGION_LOCAL1(m_core.get_blockchain_storage());
+
     for(auto tx_blob_it = arg.b.txs.begin(); tx_blob_it!=arg.b.txs.end();tx_blob_it++)
     {
       cryptonote::tx_verification_context tvc = AUTO_VAL_INIT(tvc);
@@ -382,6 +385,8 @@ namespace cryptonote
 
       BOOST_FOREACH(const block_complete_entry& block_entry, arg.blocks)
       {
+	CRITICAL_REGION_LOCAL(m_core.get_mempool());
+	CRITICAL_REGION_LOCAL1(m_core.get_blockchain_storage());
         //process transactions
         TIME_MEASURE_START(transactions_process_time);
         BOOST_FOREACH(auto& tx_blob, block_entry.txs)

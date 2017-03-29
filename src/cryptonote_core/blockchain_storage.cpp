@@ -106,6 +106,12 @@ bool blockchain_storage::init(const std::string& config_folder)
   const std::string filename = m_config_folder + "/" CRYPTONOTE_BLOCKCHAINDATA_FILENAME;
   if(tools::unserialize_obj_from_file(*this, filename))
   {
+    // transactions container
+    BOOST_FOREACH(const auto &e, m_transactions) 
+    {
+      CHECK_AND_ASSERT_MES(e.first==get_transaction_hash(e.second.tx),false,"corrupt transactions container");
+    }
+
     // checkpoints
 
     // mainchain
@@ -1751,3 +1757,12 @@ bool blockchain_storage::add_new_block(const block& bl_, block_verification_cont
 
   return handle_block_to_main_chain(bl, id, bvc);
 }
+  void blockchain_storage::lock() const
+  {
+    m_blockchain_lock.lock();
+  }
+  //---------------------------------------------------------------------------------
+  void blockchain_storage::unlock() const
+  {
+    m_blockchain_lock.unlock();
+  }
