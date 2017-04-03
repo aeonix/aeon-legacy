@@ -220,31 +220,30 @@ namespace cryptonote
     if(context.m_state != cryptonote_connection_context::state_normal)
       return 1;
 
-    CRITICAL_REGION_LOCAL(m_core.get_mempool());
-    CRITICAL_REGION_LOCAL1(m_core.get_blockchain_storage());
-
-    for(auto tx_blob_it = arg.b.txs.begin(); tx_blob_it!=arg.b.txs.end();tx_blob_it++)
-    {
-      cryptonote::tx_verification_context tvc = AUTO_VAL_INIT(tvc);
-      m_core.handle_incoming_tx(*tx_blob_it, tvc, true);
-      if(tvc.m_verifivation_failed)
-      {
-        LOG_PRINT_CCONTEXT_L0("Block verification failed: transaction verification failed, dropping connection");
-        m_p2p->drop_connection(context);
-        return 1;
-      }
-    }
-
-
     block_verification_context bvc = boost::value_initialized<block_verification_context>();
-    m_core.pause_mine();
-    m_core.handle_incoming_block(arg.b.block, bvc);
-    m_core.resume_mine();
+    {
+      CRITICAL_REGION_LOCAL(m_core.get_mempool());
+      CRITICAL_REGION_LOCAL1(m_core.get_blockchain_storage());
+
+      for(auto tx_blob_it = arg.b.txs.begin(); tx_blob_it!=arg.b.txs.end();tx_blob_it++)
+      {
+	cryptonote::tx_verification_context tvc = AUTO_VAL_INIT(tvc);
+	m_core.handle_incoming_tx(*tx_blob_it, tvc, true);
+	if(tvc.m_verifivation_failed)
+	{
+	  LOG_PRINT_CCONTEXT_L0("Block verification failed: transaction verification failed, dropping connection");
+	  goto drop_connection;
+	}
+      }
+
+      m_core.pause_mine();
+      m_core.handle_incoming_block(arg.b.block, bvc);
+      m_core.resume_mine();
+    }
     if(bvc.m_verifivation_failed)
     {
       LOG_PRINT_CCONTEXT_L0("Block verification failed, dropping connection");
-      m_p2p->drop_connection(context);
-      return 1;
+      goto drop_connection;
     }
     if(bvc.m_added_to_main_chain)
     {
@@ -260,6 +259,10 @@ namespace cryptonote
       post_notify<NOTIFY_REQUEST_CHAIN>(r, context);
     }
       
+    return 1;
+
+  drop_connection:
+    m_p2p->drop_connection(context);
     return 1;
   }
   //------------------------------------------------------------------------------------------------------------------------
@@ -397,8 +400,7 @@ namespace cryptonote
           {
             LOG_ERROR_CCONTEXT("transaction verification failed on NOTIFY_RESPONSE_GET_OBJECTS, \r\ntx_id = " 
               << epee::string_tools::pod_to_hex(get_blob_hash(tx_blob)) << ", dropping connection");
-            m_p2p->drop_connection(context);
-            return 1;
+	    goto drop_connection;
           }
         }
         TIME_MEASURE_FINISH(transactions_process_time);
@@ -412,16 +414,12 @@ namespace cryptonote
         if(bvc.m_verifivation_failed)
         {
           LOG_PRINT_CCONTEXT_L0("Block verification failed, dropping connection");
-          m_p2p->drop_connection(context);
-	  m_p2p->add_ip_fail(context.m_remote_ip);
-          return 1;
+	  goto drop_and_fail_connection;
         }
         if(bvc.m_marked_as_orphaned)
         {
           LOG_PRINT_CCONTEXT_L0("Block received at sync phase was marked as orphaned, dropping connection");
-          m_p2p->drop_connection(context);
-          m_p2p->add_ip_fail(context.m_remote_ip);
-          return 1;
+	  goto drop_and_fail_connection;
         }
 
         TIME_MEASURE_FINISH(block_process_time);
@@ -431,6 +429,16 @@ namespace cryptonote
 
     request_missing_objects(context, true);
     return 1;
+
+  drop_connection:
+    m_p2p->drop_connection(context);
+    return 1;
+    
+  drop_and_fail_connection:
+    m_p2p->drop_connection(context);
+    m_p2p->add_ip_fail(context.m_remote_ip);
+    return 1;
+
   }
   //------------------------------------------------------------------------------------------------------------------------
   template<class t_core> 
