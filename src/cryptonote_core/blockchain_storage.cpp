@@ -932,7 +932,8 @@ bool blockchain_storage::get_blocks(uint64_t start_offset, size_t count, std::li
 //------------------------------------------------------------------
 bool blockchain_storage::handle_get_objects(NOTIFY_REQUEST_GET_OBJECTS::request& arg, NOTIFY_RESPONSE_GET_OBJECTS::request& rsp)
 {
-  CRITICAL_REGION_LOCAL(m_blockchain_lock);
+  CRITICAL_REGION_LOCAL(m_tx_pool);
+  CRITICAL_REGION_LOCAL1(m_blockchain_lock);
   rsp.current_blockchain_height = get_current_blockchain_height();
   std::list<block> blocks;
   get_blocks(arg.blocks, blocks, rsp.missed_ids);

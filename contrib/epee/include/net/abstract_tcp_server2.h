@@ -78,7 +78,7 @@ namespace net_utils
     explicit connection(boost::asio::io_service& io_service,
       typename t_protocol_handler::config_type& config, volatile uint32_t& sock_count, i_connection_filter * &pfilter);
 
-    virtual ~connection();
+    virtual ~connection() noexcept(false);
     /// Get the socket associated with the connection.
     boost::asio::ip::tcp::socket& socket();
 
