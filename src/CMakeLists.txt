@@ -1,4 +1,4 @@
-add_definitions(-DSTATICLIB)
+add_definitions(-DMINIUPNP_STATICLIB)
 
 file(GLOB_RECURSE COMMON common/*)
 file(GLOB_RECURSE CRYPTO crypto/*)
