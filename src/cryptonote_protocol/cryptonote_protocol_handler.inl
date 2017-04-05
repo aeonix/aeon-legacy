@@ -275,13 +275,15 @@ namespace cryptonote
 
     for(auto tx_blob_it = arg.txs.begin(); tx_blob_it!=arg.txs.end();)
     {
+      CRITICAL_REGION_LOCAL(m_core.get_mempool());
+      CRITICAL_REGION_LOCAL1(m_core.get_blockchain_storage());
+
       cryptonote::tx_verification_context tvc = AUTO_VAL_INIT(tvc);
       m_core.handle_incoming_tx(*tx_blob_it, tvc, false);
       if(tvc.m_verifivation_failed)
       {
         LOG_PRINT_CCONTEXT_L0("Tx verification failed, dropping connection");
-        m_p2p->drop_connection(context);
-        return 1;
+	goto drop_connection;
       }
       if(tvc.m_should_be_relayed)
         ++tx_blob_it;
@@ -296,6 +298,10 @@ namespace cryptonote
     }
 
     return true;
+
+  drop_connection:
+    m_p2p->drop_connection(context);
+    return 1;
   }
   //------------------------------------------------------------------------------------------------------------------------
   template<class t_core> 
