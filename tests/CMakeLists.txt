@@ -1,4 +1,4 @@
-add_definitions(-DSTATICLIB)
+add_definitions(-DMINIUPNP_STATICLIB)
 
 add_subdirectory(gtest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
