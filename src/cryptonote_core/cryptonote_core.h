@@ -123,6 +123,7 @@ namespace cryptonote
 
      void set_target_blockchain_height(uint64_t target_blockchain_height);
      uint64_t get_target_blockchain_height() const;
+     void disable_saving() { disable_store=true; }
 
    private:
      bool add_new_tx(const transaction& tx, const crypto::hash& tx_hash, const crypto::hash& tx_prefix_hash, size_t blob_size, tx_verification_context& tvc, bool keeped_by_block);
@@ -156,6 +157,7 @@ namespace cryptonote
      std::string m_config_folder;
      cryptonote_protocol_stub m_protocol_stub;
      epee::math_helper::once_a_time_seconds<60*60*12, false> m_store_blockchain_interval;
+     bool disable_store = false;
      friend class tx_validate_inputs;
      std::atomic<bool> m_starter_message_showed;
 
