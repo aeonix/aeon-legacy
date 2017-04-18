@@ -62,6 +62,7 @@ namespace
   const command_line::arg_descriptor<std::string> arg_log_file    = {"log-file", "", ""};
   const command_line::arg_descriptor<int>         arg_log_level   = {"log-level", "", LOG_LEVEL_0};
   const command_line::arg_descriptor<bool>        arg_console     = {"no-console", "Disable daemon console commands"};
+  const command_line::arg_descriptor<bool>        arg_disable_store = {"disable-save", "Disable automatic blockchain saving"};
 }
 
 bool command_line_preprocessor(const boost::program_options::variables_map& vm);
@@ -92,7 +93,7 @@ int main(int argc, char* argv[])
   command_line::add_arg(desc_cmd_sett, arg_log_file);
   command_line::add_arg(desc_cmd_sett, arg_log_level);
   command_line::add_arg(desc_cmd_sett, arg_console);
-  
+  command_line::add_arg(desc_cmd_sett, arg_disable_store);
 
   cryptonote::core::init_options(desc_cmd_sett);
   cryptonote::core_rpc_server::init_options(desc_cmd_sett);
@@ -194,6 +195,11 @@ int main(int argc, char* argv[])
   if(!command_line::has_arg(vm, arg_console))
   {
     dch.start_handling();
+  }
+
+  if(command_line::has_arg(vm, arg_disable_store))
+  {
+    ccore.disable_saving();
   }
 
   LOG_PRINT_L0("Starting core rpc server...");
