@@ -157,8 +157,12 @@ namespace cryptonote
       txd_p.first->second.receive_time = time(nullptr);
       tvc.m_added_to_pool = true;
 
-      if(txd_p.first->second.fee > 0)
+      if(txd_p.first->second.fee >= DEFAULT_FEE)
         tvc.m_should_be_relayed = true;
+      else
+      {
+	LOG_PRINT_L1("not relaying, tx fee too low " << print_money(txd_p.first->second.fee) << "<" << print_money(DEFAULT_FEE) << " txid=" << id);
+      }
     }
 
     tvc.m_verifivation_failed = true;
