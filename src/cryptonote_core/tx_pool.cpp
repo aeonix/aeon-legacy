@@ -157,8 +157,12 @@ namespace cryptonote
       txd_p.first->second.receive_time = time(nullptr);
       tvc.m_added_to_pool = true;
 
-      if(txd_p.first->second.fee > 0)
+      if(txd_p.first->second.fee >= DEFAULT_FEE)
         tvc.m_should_be_relayed = true;
+      else
+      {
+	LOG_PRINT_L1("not relaying, tx fee too low " << print_money(txd_p.first->second.fee) << "<" << print_money(DEFAULT_FEE) << " txid=" << id);
+      }
     }
 
     tvc.m_verifivation_failed = true;
@@ -423,14 +427,25 @@ namespace cryptonote
     total_size = 0;
     fee = 0;
     size_t n = 0;
-
+    
     // Maximum block size is 130% of the median block size.  This gives a
     // little extra headroom for the max size transaction.
     size_t max_total_size = (130 * median_size) / 100 - CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE;
     std::unordered_set<crypto::key_image> k_images;
 
-    BOOST_FOREACH(transactions_container::value_type& tx, m_transactions)
+    std::vector<transactions_container::iterator> tx_index(m_transactions.size());
+    std::iota(tx_index.begin(),tx_index.end(),m_transactions.begin());
+    std::sort(tx_index.begin(),
+	      tx_index.end(),
+	      [](transactions_container::iterator a, transactions_container::iterator b) -> bool
+	      {
+		return ((double)a->second.fee)/a->second.blob_size > ((double)b->second.fee)/b->second.blob_size;
+	      });
+
+    BOOST_FOREACH(auto it, tx_index)
     {
+      transactions_container::value_type& tx = *it;
+      
       if (tx.second.tx.vin.size() > 0) 
       {
         CHECKED_GET_SPECIFIC_VARIANT(tx.second.tx.vin[0], const txin_to_key, itk, false);
@@ -457,12 +472,6 @@ namespace cryptonote
       if (total_size > median_size)
         break;      
 
-      // Don't mine transactions with too-low fee half the time
-      // make sure first slot (n==0) is allowed to not completely shut out
-      // low mix from old client
-      if (DEFAULT_FEE > MINIMUM_RELAY_FEE && (n&1) != 0 && tx.second.fee < DEFAULT_FEE)
-	continue;
-      
       // Skip transactions that are not ready to be
       // included into the blockchain or that are
       // double spends of another transaction already in the template
