@@ -71,11 +71,12 @@ inline bool do_serialize(Archive &ar, T &v)
   return ::serializer<Archive, T>::serialize(ar, v);
 }
 
-#ifndef __GNUC__
-#ifndef constexpr
-#define constexpr
-#endif
-#endif
+// Never used in the code base
+// #ifndef __GNUC__
+// #ifndef constexpr
+// #define constexpr
+// #endif
+// #endif
 
 #define BLOB_SERIALIZER(T) \
   template<> struct is_blob_type<T> { typedef boost::true_type type; }
