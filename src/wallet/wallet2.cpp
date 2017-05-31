@@ -624,6 +624,17 @@ void wallet2::get_payments(const crypto::hash& payment_id, std::list<wallet2::pa
   });
 }
 //----------------------------------------------------------------------------------------------------
+void wallet2::get_payments(std::list<std::pair<crypto::hash,wallet2::payment_details>>& payments, uint64_t min_height, uint64_t max_height) const
+{
+  auto range = std::make_pair(m_payments.begin(), m_payments.end());
+  std::for_each(range.first, range.second, [&payments, &min_height, &max_height](const payment_container::value_type& x) {
+    if (min_height < x.second.m_block_height && max_height >= x.second.m_block_height)
+    {
+      payments.push_back(x);
+    }
+  });
+}
+//----------------------------------------------------------------------------------------------------
 bool wallet2::is_transfer_unlocked(const transfer_details& td) const
 {
   if(!is_tx_spendtime_unlocked(td.m_tx.unlock_time))
