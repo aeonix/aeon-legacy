@@ -70,7 +70,7 @@ namespace
   const command_line::arg_descriptor<std::string> arg_electrum_seed = {"electrum-seed", "Specify electrum seed for wallet recovery/creation", ""};
   const command_line::arg_descriptor<bool> arg_restore_deterministic_wallet = {"restore-deterministic-wallet", "Recover wallet using electrum-style mnemonic", false};
   const command_line::arg_descriptor<bool> arg_non_deterministic = {"non-deterministic", "creates non-deterministic view and spend keys", false};
-  const command_line::arg_descriptor<int> arg_daemon_port = {"daemon-port", "Use daemon instance at port <arg> instead of 8081", 0};
+  const command_line::arg_descriptor<int> arg_daemon_port = {"daemon-port", "Use daemon instance at port <arg> instead of 11181", 0};
   const command_line::arg_descriptor<uint32_t> arg_log_level = {"set_log", "", 0, true};
 
   const command_line::arg_descriptor< std::vector<std::string> > arg_command = {"command", ""};
