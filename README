@@ -1,21 +1,15 @@
-------
-AEON
-------
+# AEON
 
-Copyright (c) 2014, AEON, The Monero Project
+Copyright (c) 2014-2017, AEON, The Monero Project
 
----------------------
-Development Resources
----------------------
+## Development and Community Resources
 
-Web: tbd
-Mail: tbd
-Github: https://github.com/iamsmooth/aeon
-IRC: tbd
+Web: aeon.cash
+Reddit: https://reddit.com/r/aeon
+Github: https://github.com/aeonix/aeon
+IRC: #aeon
 
-------------
-Introduction
-------------
+## Introduction
 
 AEON is a private, secure, untraceable currency. You are your bank, you control your
 funds, and nobody can trace your transfers.
@@ -35,9 +29,7 @@ types of cryptography, AEON is able to ensure that transactions are not only
 untraceable, but have an optional measure of ambiguity that ensures that transactions
 cannot easily be tied back to an individual user or computer.
 
-------------------
-About this Project
-------------------
+## About this Project
 
 This is the core implementation of AEON. It is open source and completely free to use
 without restrictions, except for those specified in the license agreement below. There are
@@ -59,43 +51,13 @@ collaborators. On the other hand, if the change is particularly large or complex
 is expected that it will be discussed at length either well in advance of the pull
 request being submitted, or even directly on the pull request.
 
--------
-License
--------
+## Deployment notes
 
-Copyright (c) 2014, AEON, The Monero Project
+1. When running the daemon, take care to ensure that the console output is not blocked, as this may in turn cause processing threads to be blocked, potentially resulting in unreliable operation of the daemon. This can occur because the implementation contains many logging statements which send output to the console within the context of the processing thread, and if the output buffer fills up this will block the thread. The best practice is to start the daemon within the context of a background process manager such as screen or tmux, or within a terminal window on a physical or virtual console. In doing so be sure that the session is not left in 'scrollback' or 'edit' mode as this may eventualy cause the output to block.
+2. The daemon currently has high resource usage especially memory. To ensure reliable performance (especially on mining/pool nodes where poor performance can result in increase 'orphan blocks'), ensure that the daemon is being run on hardware with sufficient memory to avoid excessive swapping and long pauses. While it is possible to operate with limited memory and swap in some cases (though not recommended for mining), this requires care and a platform with sufficient I/O performance (e.g. unthrottled SSD). In the latter case also see the next item.
+3. One cause of high resource usage and long processing delays is the periodic saving of the blockchain every 12 hours. Doing so requires access to the entire memory space and potentially large amounts of swapping. It can be disabled using the `--disable-save` option. The blockchain will still be saved on exit or upon request using the save command.
 
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are
-permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of
-   conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice, this list of
-   conditions and the following disclaimer in the documentation and/or other materials
-   provided with the distribution.
-
-3. Neither the name of the copyright holder nor the names of its contributors may be used
-   to endorse or promote products derived from this software without specific prior
-   written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
-EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-Parts of the project are originally copyright (c) 2012-2013 The Cryptonote developers
-
-----------------
-Compiling AEON
-----------------
+## Compiling AEON
 
 On Unix and Linux:
 
@@ -146,9 +108,7 @@ Dependencies: MSVC 2013 or later, CMake 2.8.6 or later, and Boost 1.53 or later.
   may want to run 'C:\program files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat'
   (or equivalent) to temporarily set the environment variables.
 
-----------------------
-Building Documentation
-----------------------
+## Building Documentation
 
 AEON developer documentation uses Doxygen, and is currently a work-in-progress.
 
@@ -161,7 +121,39 @@ Dependencies: Doxygen 1.8.0 or later, Graphviz 2.28 or later (optional)
 
 - The output will be built in doc/html/
 
-Other license information:
+## License
+
+Copyright (c) 2014-2017, AEON, The Monero Project
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are
+permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of
+   conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of
+   conditions and the following disclaimer in the documentation and/or other materials
+   provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used
+   to endorse or promote products derived from this software without specific prior
+   written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Parts of the project are originally copyright (c) 2012-2013 The Cryptonote developers
+
+## Other license information:
 
 Copyright (c) 2014-2017, The Monero Project
 
@@ -194,3 +186,4 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Parts of the project are originally copyright (c) 2012-2013 The Cryptonote
 developers
+
