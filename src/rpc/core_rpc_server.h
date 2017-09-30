@@ -47,9 +47,6 @@ namespace cryptonote
   class core_rpc_server: public epee::http_server_impl_base<core_rpc_server>
   {
   public:
-  
-    static const command_line::arg_descriptor<bool> arg_restricted_rpc;
-  
     typedef epee::net_utils::connection_context_base connection_context;
 
     core_rpc_server(core& cr, nodetool::node_server<cryptonote::t_cryptonote_protocol_handler<cryptonote::core> >& p2p);
