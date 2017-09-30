@@ -117,5 +117,6 @@ namespace cryptonote
     nodetool::node_server<cryptonote::t_cryptonote_protocol_handler<cryptonote::core> >& m_p2p;
     std::string m_port;
     std::string m_bind_ip;
+    bool m_restricted;
   };
 }
