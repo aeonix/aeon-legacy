@@ -47,7 +47,7 @@ namespace cryptonote
   {
     const command_line::arg_descriptor<std::string> arg_rpc_bind_ip   = {"rpc-bind-ip", "", "127.0.0.1"};
     const command_line::arg_descriptor<std::string> arg_rpc_bind_port = {"rpc-bind-port", "", std::to_string(RPC_DEFAULT_PORT)};
-    const command_line::arg_descriptor<bool> core_rpc_server::arg_restricted_rpc = {"restricted-rpc", "Restrict RPC to view only commands", false};
+    const command_line::arg_descriptor<bool> arg_restricted_rpc = {"restricted-rpc", "Restrict RPC to view only commands", false};
   }
 
   //-----------------------------------------------------------------------------------
