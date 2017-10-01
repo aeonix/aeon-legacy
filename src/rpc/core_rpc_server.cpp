@@ -47,6 +47,7 @@ namespace cryptonote
   {
     const command_line::arg_descriptor<std::string> arg_rpc_bind_ip   = {"rpc-bind-ip", "", "127.0.0.1"};
     const command_line::arg_descriptor<std::string> arg_rpc_bind_port = {"rpc-bind-port", "", std::to_string(RPC_DEFAULT_PORT)};
+    const command_line::arg_descriptor<bool> arg_restricted_rpc = {"restricted-rpc", "Restrict RPC to view only commands", false};
   }
 
   //-----------------------------------------------------------------------------------
@@ -54,6 +55,7 @@ namespace cryptonote
   {
     command_line::add_arg(desc, arg_rpc_bind_ip);
     command_line::add_arg(desc, arg_rpc_bind_port);
+    command_line::add_arg(desc, arg_restricted_rpc);
   }
   //------------------------------------------------------------------------------------------------------------------------------
   core_rpc_server::core_rpc_server(core& cr, nodetool::node_server<cryptonote::t_cryptonote_protocol_handler<cryptonote::core> >& p2p):m_core(cr), m_p2p(p2p)
@@ -63,6 +65,7 @@ namespace cryptonote
   {
     m_bind_ip = command_line::get_arg(vm, arg_rpc_bind_ip);
     m_port = command_line::get_arg(vm, arg_rpc_bind_port);
+    m_restricted = command_line::get_arg(vm, arg_restricted_rpc);
     return true;
   }
   //------------------------------------------------------------------------------------------------------------------------------
