@@ -135,7 +135,7 @@ private:
 	  uint64_t height = m_srv.get_payload_object().get_core().get_blockchain_storage().get_current_blockchain_height();
 
 	  LOG_PRINT_GREEN("BH: " << height << ", DIFF: " << difficulty 
-			  << ", HR: " << (int) difficulty / (height < HARDFORK_1_HEIGHT ? HARDFORK_1_OLD_TARGET : DIFFICULTY_TARGET) << " H/s", LOG_LEVEL_0);
+			  << ", HR: " << (uint64_t) difficulty / (height < HARDFORK_1_HEIGHT ? HARDFORK_1_OLD_TARGET : DIFFICULTY_TARGET) << " H/s", LOG_LEVEL_0);
 
 	  return true;
   } 

@@ -80,6 +80,9 @@ Advanced options:
 - Building with Clang: it may be possible to use Clang instead of GCC, but this may not
   work everywhere. To build, run 'export CC=clang CXX=clang++' before running 'make'.
 
+- Manual Cmake: If you wish to manually invoke `cmake` separately instead of the above `make`, you will need to use the following: `mkdir -p build/release && cd build/release && cmake -D CMAKE_BUILD_TYPE=Release ../.. && make`. Other options can be used for debug or test builds. See root Makefile in the repo.
+
+
 On OS X:
 
 The project can be built from scratch by following instructions for Unix and Linux above.
