@@ -51,7 +51,7 @@ collaborators. On the other hand, if the change is particularly large or complex
 is expected that it will be discussed at length either well in advance of the pull
 request being submitted, or even directly on the pull request.
 
-## Deployment notes
+## Deployment Notes
 
 1. When running the daemon, take care to ensure that the console output is not blocked, as this may in turn cause processing threads to be blocked, potentially resulting in unreliable operation of the daemon. This can occur because the implementation contains many logging statements which send output to the console within the context of the processing thread, and if the output buffer fills up this will block the thread. The best practice is to start the daemon within the context of a background process manager such as screen or tmux, or within a terminal window on a physical or virtual console. In doing so be sure that the session is not left in 'scrollback' or 'edit' mode as this may eventualy cause the output to block.
 2. The daemon currently has high resource usage especially memory. To ensure reliable performance (especially on mining/pool nodes where poor performance can result in increase 'orphan blocks'), ensure that the daemon is being run on hardware with sufficient memory to avoid excessive swapping and long pauses. While it is possible to operate with limited memory and swap in some cases (though not recommended for mining), this requires care and a platform with sufficient I/O performance (e.g. unthrottled SSD). In the latter case also see the next item.
@@ -157,7 +157,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Parts of the project are originally copyright (c) 2012-2013 The Cryptonote developers
 
-## Other license information:
+## Other License Information:
 
 Copyright (c) 2014-2017, The Monero Project
 
