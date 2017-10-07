@@ -67,6 +67,7 @@ namespace
   const command_line::arg_descriptor<std::string> arg_daemon_address = {"daemon-address", "Use daemon instance at <host>:<port>", ""};
   const command_line::arg_descriptor<std::string> arg_daemon_host = {"daemon-host", "Use daemon instance at host <arg> instead of localhost", ""};
   const command_line::arg_descriptor<std::string> arg_password = {"password", "Wallet password", "", true};
+  const command_line::arg_descriptor<int> arg_feemult = {"fee-multiplier", "Fee multiplier", 1};
   const command_line::arg_descriptor<std::string> arg_electrum_seed = {"electrum-seed", "Specify electrum seed for wallet recovery/creation", ""};
   const command_line::arg_descriptor<bool> arg_restore_deterministic_wallet = {"restore-deterministic-wallet", "Recover wallet using electrum-style mnemonic", false};
   const command_line::arg_descriptor<bool> arg_non_deterministic = {"non-deterministic", "creates non-deterministic view and spend keys", false};
@@ -319,6 +320,12 @@ bool simple_wallet::init(const boost::program_options::variables_map& vm)
 {
   handle_command_line(vm);
 
+  if (m_feemult < 1 || m_feemult > 100)
+  {
+    fail_msg_writer() << "invalid fee mult";
+    return false;
+  }
+
   if (!m_daemon_address.empty() && !m_daemon_host.empty() && 0 != m_daemon_port)
   {
     fail_msg_writer() << "you can't specify daemon host or port several times";
@@ -416,6 +423,7 @@ void simple_wallet::handle_command_line(const boost::program_options::variables_
   m_electrum_seed                 = command_line::get_arg(vm, arg_electrum_seed);
   m_restore_deterministic_wallet  = command_line::get_arg(vm, arg_restore_deterministic_wallet);
   m_non_deterministic             = command_line::get_arg(vm, arg_non_deterministic);
+  m_feemult                       = command_line::get_arg(vm, arg_feemult);
 }
 //----------------------------------------------------------------------------------------------------
 bool simple_wallet::try_connect_to_daemon()
@@ -926,7 +934,7 @@ bool simple_wallet::transfer(const std::vector<std::string> &args_)
   try
   {
     // figure out what tx will be necessary
-    auto ptx_vector = m_wallet->create_transactions(dsts, fake_outs_count, 0 /* unlock_time */, DEFAULT_FEE, extra);
+    auto ptx_vector = m_wallet->create_transactions(dsts, fake_outs_count, 0 /* unlock_time */, DEFAULT_FEE*m_feemult, extra);
 
     // if more than one tx necessary, prompt user to confirm
     if (ptx_vector.size() > 1)
@@ -934,7 +942,7 @@ bool simple_wallet::transfer(const std::vector<std::string> &args_)
         std::string prompt_str = "Your transaction needs to be split into ";
         prompt_str += std::to_string(ptx_vector.size());
         prompt_str += " transactions.  This will result in a fee of ";
-        prompt_str += print_money(ptx_vector.size() * DEFAULT_FEE);
+        prompt_str += print_money(ptx_vector.size() * DEFAULT_FEE*m_feemult);
         prompt_str += ".  Is this okay?  (Y/Yes/N/No)";
         std::string accepted = command_line::input_line(prompt_str);
         if (accepted != "Y" && accepted != "y" && accepted != "Yes" && accepted != "yes")
@@ -1075,6 +1083,7 @@ int main(int argc, char* argv[])
   command_line::add_arg(desc_params, arg_wallet_file);
   command_line::add_arg(desc_params, arg_generate_new_wallet);
   command_line::add_arg(desc_params, arg_password);
+  command_line::add_arg(desc_params, arg_feemult);
   command_line::add_arg(desc_params, arg_daemon_address);
   command_line::add_arg(desc_params, arg_daemon_host);
   command_line::add_arg(desc_params, arg_daemon_port);
