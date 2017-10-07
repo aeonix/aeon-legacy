@@ -521,6 +521,14 @@ namespace tools
       }
     };
     //----------------------------------------------------------------------------------------------------
+    struct subtract_fee_error : public transfer_error
+    {
+      explicit subtract_fee_error(std::string&& loc)
+        : transfer_error(std::move(loc), "destination amount does not exceed fee amount")
+      {
+      }
+    };
+    //----------------------------------------------------------------------------------------------------
     struct wallet_rpc_error : public wallet_logic_error
     {
       const std::string& request() const { return m_request; }

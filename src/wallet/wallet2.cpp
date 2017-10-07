@@ -832,8 +832,11 @@ void wallet2::commit_tx(std::vector<pending_tx>& ptx_vector)
 //
 // this function will make multiple calls to wallet2::transfer if multiple
 // transactions will be required
-std::vector<wallet2::pending_tx> wallet2::create_transactions(std::vector<cryptonote::tx_destination_entry> dsts, const size_t fake_outs_count, const uint64_t unlock_time, const uint64_t fee, const std::vector<uint8_t> extra)
+std::vector<wallet2::pending_tx> wallet2::create_transactions(std::vector<cryptonote::tx_destination_entry> dsts, const size_t fake_outs_count, const uint64_t unlock_time, const uint64_t fee, const std::vector<uint8_t> extra, const bool subtract_fee)
 {
+  // Throw exception for zero destinations here since we may be manipulating
+  // members of dsts in this function if we are subtracting the fee from them
+  THROW_WALLET_EXCEPTION_IF(dsts.empty(), error::zero_destination);
 
   // failsafe split attempt counter
   size_t attempt_count = 0;
@@ -854,9 +857,21 @@ std::vector<wallet2::pending_tx> wallet2::create_transactions(std::vector<crypto
       // for each new destination vector (i.e. for each new tx)
       for (auto & dst_vector : split_values)
       {
+        if (subtract_fee)
+        {
+          cryptonote::tx_destination_entry& first_dst = dst_vector.front();
+          THROW_WALLET_EXCEPTION_IF(first_dst.amount <= fee,error::subtract_fee_error);
+          first_dst.amount -= fee;
+        }
         cryptonote::transaction tx;
         pending_tx ptx;
-        transfer(dst_vector, fake_outs_count, unlock_time, fee, extra, tx, ptx);
+
+        //If fee is subtracted from total, send dust change back to user, otherwise keep behaviour as before (dust is added to fee).
+        if (subtract_fee)
+          transfer(dst_vector, fake_outs_count, unlock_time, fee, extra, detail::digit_split_strategy, tx_dust_policy(fee,false,m_account_public_address), tx, ptx);
+        else
+          transfer(dst_vector, fake_outs_count, unlock_time, fee, extra, detail::digit_split_strategy, tx_dust_policy(fee,true), tx, ptx);
+
         ptx_vector.push_back(ptx);
 
         // mark transfers to be used as "spent"
