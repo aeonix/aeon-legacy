@@ -813,7 +813,7 @@ void wallet2::commit_tx(pending_tx& ptx)
     it->m_spent = true;
 
   LOG_PRINT_L0("Transaction successfully sent. <" << get_transaction_hash(ptx.tx) << ">" << ENDL
-            << "Commission: " << print_money(ptx.fee+ptx.dust) << " (dust: " << print_money(ptx.dust) << ")" << ENDL
+            << "Commission: " << print_money(ptx.fee) << " (dust: " << print_money(ptx.dust) << ")" << ENDL 
             << "Balance: " << print_money(balance()) << ENDL
             << "Unlocked: " << print_money(unlocked_balance()) << ENDL
             << "Please, wait for confirmation for your balance to be unlocked.");
