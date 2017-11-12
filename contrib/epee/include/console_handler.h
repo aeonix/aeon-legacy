@@ -263,6 +263,8 @@ namespace epee
         if(!m_stdin_reader.get_line(command))
         {
           LOG_PRINT("Failed to read line.", LOG_LEVEL_0);
+          std::cin.clear();
+          continue;
         }
         string_tools::trim(command);
 
