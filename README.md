@@ -4,10 +4,10 @@ Copyright (c) 2014-2017, AEON, The Monero Project
 
 ## Development and Community Resources
 
-Web: http://aeon.cash
-Reddit: https://reddit.com/r/aeon
-Github: https://github.com/aeonix/aeon
-IRC: #aeon
+Web: http://aeon.cash  
+Reddit: https://reddit.com/r/aeon  
+Github: https://github.com/aeonix/aeon  
+IRC: #aeon  
 
 ## Introduction
 
