@@ -55,7 +55,8 @@ namespace cryptonote
               m_miner(this),
               m_miner_address(boost::value_initialized<account_public_address>()), 
               m_starter_message_showed(false),
-              m_target_blockchain_height(0)
+              m_target_blockchain_height(0),
+              m_block_sync_size(0)
   {
     set_cryptonote_protocol(pprotocol);
   }
