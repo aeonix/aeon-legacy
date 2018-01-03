@@ -478,7 +478,7 @@ namespace cryptonote
       size_t count = 0;
       auto it = context.m_needed_objects.begin();
 
-      while(it != context.m_needed_objects.end() && count < BLOCKS_SYNCHRONIZING_DEFAULT_COUNT)
+      while(it != context.m_needed_objects.end() && count < m_core.get_block_sync_size())
       {
         if( !(check_having_blocks && m_core.have_block(*it)))
         {

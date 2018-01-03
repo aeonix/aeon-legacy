@@ -124,6 +124,8 @@ namespace cryptonote
      void set_target_blockchain_height(uint64_t target_blockchain_height);
      uint64_t get_target_blockchain_height() const;
      void disable_saving() { disable_store=true; }
+     void set_block_sync_size(size_t block_sync_size) { m_block_sync_size = block_sync_size; }
+     size_t get_block_sync_size() const { return m_block_sync_size ? m_block_sync_size : BLOCKS_SYNCHRONIZING_DEFAULT_COUNT; }
 
    private:
      bool add_new_tx(const transaction& tx, const crypto::hash& tx_hash, const crypto::hash& tx_prefix_hash, size_t blob_size, tx_verification_context& tvc, bool keeped_by_block);
@@ -162,6 +164,7 @@ namespace cryptonote
      std::atomic<bool> m_starter_message_showed;
 
      uint64_t m_target_blockchain_height;
+     size_t m_block_sync_size;
 
      std::unordered_set<crypto::hash> bad_semantics_txes;
    };
