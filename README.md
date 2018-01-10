@@ -4,10 +4,10 @@ Copyright (c) 2014-2017, AEON, The Monero Project
 
 ## Development and Community Resources
 
-Web: http://aeon.cash  
-Reddit: https://reddit.com/r/aeon  
-Github: https://github.com/aeonix/aeon  
-IRC: #aeon  
+Web: http://aeon.cash
+Reddit: https://reddit.com/r/aeon
+Github: https://github.com/aeonix/aeon
+IRC: #aeon
 
 ## Introduction
 
@@ -40,7 +40,7 @@ As with many development projects, the repository on Github is considered to be 
 "staging" area for the latest changes. Before changes are merged into that master repo,
 they are tested by individual developers, as well as contributors who focus on thorough
 testing and code reviews. That having been said, the repository should be carefully
-considered before using it in a production environment, unless there is a patch in the 
+considered before using it in a production environment, unless there is a patch in the
 repository for a particular show-stopping issue you are experiencing. It is generally
 a better idea to use a tagged release for stability.
 
@@ -62,12 +62,16 @@ request being submitted, or even directly on the pull request.
 
 On Unix and Linux:
 
-Dependencies: GCC 4.7.3 or later, CMake 2.8.6 or later, and Boost 1.53 or later (except
-1.54, more details here: http://goo.gl/RrCFmA).
+Dependencies:
 
-- To build, change to the root of the source code directory, and run 'make'.
+- GCC 4.7.3 or later
+- CMake 2.8.6 or later
+- Boost 1.53 or later
+  - except 1.54, more details here: http://goo.gl/RrCFmA
+  - except 1.66; latest release, currently not supported
 
-- The resulting executables can be found in build/release/src.
+To build, change to the root of the source code directory, and run 'make'.
+The resulting executables can be found in build/release/src.
 
 Advanced options:
 
