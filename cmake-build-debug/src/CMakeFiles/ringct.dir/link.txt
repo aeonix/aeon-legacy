@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libringct.a  CMakeFiles/ringct.dir/ringct/rctCryptoOps.c.o CMakeFiles/ringct.dir/ringct/rctOps.cpp.o CMakeFiles/ringct.dir/ringct/rctSigs.cpp.o CMakeFiles/ringct.dir/ringct/rctTypes.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libringct.a

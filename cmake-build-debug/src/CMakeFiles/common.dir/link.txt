@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libcommon.a  CMakeFiles/common.dir/common/base58.cpp.o CMakeFiles/common.dir/common/command_line.cpp.o CMakeFiles/common.dir/common/util.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libcommon.a

@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libwallet.a  CMakeFiles/wallet.dir/wallet/wallet2.cpp.o CMakeFiles/wallet.dir/wallet/wallet_rpc_server.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libwallet.a

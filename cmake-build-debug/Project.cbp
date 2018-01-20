@@ -1,0 +1,2176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\utils\;CMake Files\external\;CMake Files\external\miniupnpc\;CMake Files\src\;CMake Files\tests\;CMake Files\tests\gtest\;CMake Files\tests\gtest\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="version">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 version"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libminiupnpc-static">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/libminiupnpc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNPC_SET_SOCKET_TIMEOUT"/>
+					<Add option="-D_BSD_SOURCE"/>
+					<Add option="-D_DEFAULT_SOURCE"/>
+					<Add option="-D_DARWIN_C_SOURCE"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 libminiupnpc-static"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libminiupnpc-static/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/libminiupnpc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNPC_SET_SOCKET_TIMEOUT"/>
+					<Add option="-D_BSD_SOURCE"/>
+					<Add option="-D_DEFAULT_SOURCE"/>
+					<Add option="-D_DARWIN_C_SOURCE"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 libminiupnpc-static/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/external/miniupnpc/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crypto">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libcrypto.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 crypto"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crypto/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libcrypto.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 crypto/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simplewallet">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/simplewallet" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 simplewallet"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simplewallet/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/simplewallet" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 simplewallet/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="wallet">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libwallet.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 wallet"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="wallet/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libwallet.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 wallet/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="daemon">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/aeond" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 daemon"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="daemon/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/aeond" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 daemon/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simpleminer">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/simpleminer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 simpleminer"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simpleminer/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/simpleminer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 simpleminer/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="common">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libcommon.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 common"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="common/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libcommon.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 common/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ringct">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libringct.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 ringct"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ringct/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libringct.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 ringct/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rpc">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/librpc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 rpc"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rpc/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/librpc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 rpc/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cryptonote_core">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libcryptonote_core.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 cryptonote_core"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cryptonote_core/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/libcryptonote_core.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 cryptonote_core/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="connectivity_tool">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/connectivity_tool" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 connectivity_tool"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="connectivity_tool/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/connectivity_tool" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 connectivity_tool/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests">
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="unit_tests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/unit_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 unit_tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="unit_tests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/unit_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 unit_tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_load_tests_srv">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/net_load_tests_srv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 net_load_tests_srv"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_load_tests_srv/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/net_load_tests_srv" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 net_load_tests_srv/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_load_tests_clt">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/net_load_tests_clt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 net_load_tests_clt"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_load_tests_clt/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/net_load_tests_clt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 net_load_tests_clt/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="performance_tests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/performance_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 performance_tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="performance_tests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/performance_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 performance_tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="difficulty-tests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/difficulty-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 difficulty-tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="difficulty-tests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/difficulty-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 difficulty-tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="functional_tests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/functional_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 functional_tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="functional_tests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/functional_tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 functional_tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="core_proxy">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/core_proxy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 core_proxy"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="core_proxy/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/core_proxy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 core_proxy/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crypto-tests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/crypto-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 crypto-tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crypto-tests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/crypto-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 crypto-tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-target-tests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/hash-target-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 hash-target-tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-target-tests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/hash-target-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 hash-target-tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-tests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/hash-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 hash-tests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-tests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/hash-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 hash-tests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="coretests">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/coretests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 coretests"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="coretests/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/coretests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 coretests/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DMINIUPNP_STATICLIB"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/src"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/contrib/epee/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/external"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/cmake-build-debug/version"/>
+					<Add directory="/usr/include/malloc"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest/include"/>
+					<Add directory="/Users/jan/Documents/Dev/aeon/tests/gtest"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jan/Documents/Dev/aeon/cmake-build-debug/tests/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/connecthostport.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/connecthostport.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/igd_desc_parse.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/igd_desc_parse.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/minisoap.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/minisoap.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/minissdpc.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/minissdpc.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/miniupnpc.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/miniupnpc.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/miniwget.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/miniwget.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/minixml.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/minixml.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/portlistingparse.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/portlistingparse.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/receivedata.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/receivedata.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnpcommands.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnpcommands.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnpdev.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnpdev.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnperrors.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnperrors.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnpreplyparse.c">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/upnpreplyparse.h">
+			<Option target="libminiupnpc-static"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/base58.cpp">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/base58.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/boost_serialization_helper.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/command_line.cpp">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/command_line.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/int-util.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/pod-class.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/unordered_containers_boost_serialization.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/util.cpp">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/util.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/common/varint.h">
+			<Option target="common"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/connectivity_tool/conn_tool.cpp">
+			<Option target="connectivity_tool"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/aesb.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/aesb.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/blake256.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/blake256.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/chacha8.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/chacha8.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/crypto-ops-data.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/crypto-ops.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/crypto-ops.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/crypto.cpp">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/crypto.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/electrum-words.cpp">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/electrum-words.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/generic-ops.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/groestl.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/groestl.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/groestl_tables.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/hash-extra-blake.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/hash-extra-groestl.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/hash-extra-jh.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/hash-extra-skein.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/hash-ops.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/hash.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/hash.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/initializer.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/jh.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/jh.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/keccak.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/keccak.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/oaes_config.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/oaes_lib.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/oaes_lib.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/random.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/random.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/skein.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/skein.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/skein_port.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/slow-hash.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/crypto/tree-hash.c">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/account.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/account.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/account_boost_serialization.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/blockchain_storage.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/blockchain_storage.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/blockchain_storage_boost_serialization.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/checkpoints.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/checkpoints.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/checkpoints_create.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/connection_context.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_basic.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_basic_impl.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_basic_impl.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_boost_serialization.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_core.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_core.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_format_utils.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_format_utils.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/cryptonote_stat_info.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/difficulty.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/difficulty.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/miner.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/miner.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/tx_extra.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/tx_pool.cpp">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/tx_pool.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_core/verification_context.h">
+			<Option target="cryptonote_core"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_protocol/blobdatatype.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_protocol/cryptonote_protocol_defs.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_protocol/cryptonote_protocol_handler.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_protocol/cryptonote_protocol_handler.inl">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/cryptonote_protocol/cryptonote_protocol_handler_common.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/daemon/daemon.cpp">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/daemon/daemon_commands_handler.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/miner/simpleminer.cpp">
+			<Option target="simpleminer"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/miner/simpleminer.h">
+			<Option target="simpleminer"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/miner/simpleminer_protocol_defs.h">
+			<Option target="simpleminer"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/miner/target_helper.h">
+			<Option target="simpleminer"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/net_node.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/net_node.inl">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/net_node_common.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/net_peerlist.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/net_peerlist_boost_serialization.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/p2p_networks.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/p2p_protocol_defs.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/p2p/stdafx.h">
+			<Option target="daemon"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/CMakeLists.txt">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctCryptoOps.c">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctCryptoOps.h">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctOps.cpp">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctOps.h">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctSigs.cpp">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctSigs.h">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctTypes.cpp">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/ringct/rctTypes.h">
+			<Option target="ringct"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/rpc/core_rpc_server.cpp">
+			<Option target="rpc"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/rpc/core_rpc_server.h">
+			<Option target="rpc"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/rpc/core_rpc_server_commands_defs.h">
+			<Option target="rpc"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/rpc/core_rpc_server_error_codes.h">
+			<Option target="rpc"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/simplewallet/password_container.cpp">
+			<Option target="simplewallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/simplewallet/password_container.h">
+			<Option target="simplewallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/simplewallet/simplewallet.cpp">
+			<Option target="simplewallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/simplewallet/simplewallet.h">
+			<Option target="simplewallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/wallet/wallet2.cpp">
+			<Option target="wallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/wallet/wallet2.h">
+			<Option target="wallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/wallet/wallet_errors.h">
+			<Option target="wallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/wallet/wallet_rpc_server.cpp">
+			<Option target="wallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/wallet/wallet_rpc_server.h">
+			<Option target="wallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/wallet/wallet_rpc_server_commands_defs.h">
+			<Option target="wallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/wallet/wallet_rpc_server_error_codes.h">
+			<Option target="wallet"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_proxy/core_proxy.cpp">
+			<Option target="core_proxy"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_proxy/core_proxy.h">
+			<Option target="core_proxy"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/block_reward.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/block_reward.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/block_validation.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/block_validation.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chain_split_1.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chain_split_1.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chain_switch_1.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chain_switch_1.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chaingen.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chaingen.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chaingen001.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chaingen_main.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/chaingen_tests_list.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/double_spend.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/double_spend.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/double_spend.inl">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/integer_overflow.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/integer_overflow.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/ring_signature_1.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/ring_signature_1.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/transaction_tests.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/transaction_tests.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/tx_validation.cpp">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/core_tests/tx_validation.h">
+			<Option target="coretests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/crypto-ops-data.c">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/crypto-ops.c">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/crypto-tests.h">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/crypto.cpp">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/hash.c">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/main.cpp">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/random.c">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/crypto/tests.txt">
+			<Option target="crypto-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/difficulty/difficulty.cpp">
+			<Option target="difficulty-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/functional_tests/main.cpp">
+			<Option target="functional_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/functional_tests/transactions_flow_test.cpp">
+			<Option target="functional_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/functional_tests/transactions_flow_test.h">
+			<Option target="functional_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/functional_tests/transactions_generation_from_blockchain.cpp">
+			<Option target="functional_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/functional_tests/transactions_generation_from_blockchain.h">
+			<Option target="functional_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/gtest/src/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/gtest/src/gtest_main.cc">
+			<Option target="gtest_main"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/hash-target.cpp">
+			<Option target="hash-target-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/hash/main.cpp">
+			<Option target="hash-tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/net_load_tests/clt.cpp">
+			<Option target="net_load_tests_clt"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/net_load_tests/srv.cpp">
+			<Option target="net_load_tests_srv"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/check_ring_signature.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/cn_slow_hash.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/construct_tx.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/derive_public_key.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/derive_secret_key.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/generate_key_derivation.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/generate_key_image.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/generate_key_image_helper.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/is_out_to_acc.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/main.cpp">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/multi_tx_test_base.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/performance_tests.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/performance_utils.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/performance_tests/single_tx_test_base.h">
+			<Option target="performance_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/base58.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/block_reward.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/chacha8.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/checkpoints.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/decompose_amount_into_digits.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/epee_boosted_tcp_server.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/epee_levin_protocol_handler_async.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/get_xtype_from_string.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/main.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/mul_div.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/parse_amount.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/serialization.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/test_format_utils.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/test_peerlist.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/test_protocol_pack.cpp">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/unit_tests/unit_tests_utils.h">
+			<Option target="unit_tests"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/utils/test-static-assert.c">
+			<Option virtualFolder="CMake Files\utils\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\miniupnpc\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/miniupnpcstrings.h.cmake">
+			<Option virtualFolder="CMake Files\external\miniupnpc\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\miniupnpc\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/external/miniupnpc/miniupnpcstrings.h.cmake">
+			<Option virtualFolder="CMake Files\external\miniupnpc\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/gtest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\gtest\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/gtest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\gtest\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/gtest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\tests\gtest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/jan/Documents/Dev/aeon/tests/gtest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\tests\gtest\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

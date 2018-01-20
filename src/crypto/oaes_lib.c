@@ -31,7 +31,12 @@
 #include <stddef.h>
 #include <time.h> 
 #include <sys/timeb.h>
+
+#ifdef __MACH__
+#else
 #include <malloc.h>
+#endif
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
