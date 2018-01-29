@@ -72,17 +72,18 @@ namespace rct {
 
     //Generates a vector of secret key
     //Mainly used in testing
-#if 0
     keyV skvGen(size_t rows ) {
         keyV rv(rows);
+#if 0
         size_t i = 0;
         crypto::rand(rows * sizeof(key), (uint8_t*)&rv[0]);
         for (i = 0 ; i < rows ; i++) {
             sc_reduce32(rv[i].bytes);
         }
+#endif
         return rv;
     }
-#endif
+
     //generates a random curve point (for testing)
     key  pkGen() {
         key sk = skGen();
@@ -257,10 +258,10 @@ namespace rct {
     }
 
 
-#if 0
     //subtract Keys (subtracts curve points)
     //AB = A - B where A, B are curve points
     void subKeys(key & AB, const key &A, const key &B) {
+#if 0
         ge_p3 B2, A2;
         CHECK_AND_ASSERT_THROW_MES(ge_frombytes_vartime(&B2, B.bytes) == 0, "ge_frombytes_vartime failed at "+boost::lexical_cast<std::string>(__LINE__));
         CHECK_AND_ASSERT_THROW_MES(ge_frombytes_vartime(&A2, A.bytes) == 0, "ge_frombytes_vartime failed at "+boost::lexical_cast<std::string>(__LINE__));
@@ -270,8 +271,8 @@ namespace rct {
         ge_sub(&tmp3, &A2, &tmp2);
         ge_p1p1_to_p3(&A2, &tmp3);
         ge_p3_tobytes(AB.bytes, &A2);
-    }
 #endif
+    }
     //checks if A, B are equal in terms of bytes (may say no if one is a non-reduced scalar)
     //without doing curve operations
     bool equalKeys(const key & a, const key & b) {
