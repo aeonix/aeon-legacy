@@ -67,6 +67,9 @@ namespace cryptonote
     bool run_console_handler();
 
     bool new_wallet(const std::string &wallet_file, const std::string& password, const crypto::secret_key& recovery_key = crypto::secret_key(), bool recover = false, bool two_random = false);
+    
+    bool new_wallet_from_keys(const std::string& wallet_file, const std::string& password, const cryptonote::account_public_address& address, const crypto::secret_key& spendkey, const crypto::secret_key& viewkey);
+    
     bool open_wallet(const std::string &wallet_file, const std::string& password);
     bool close_wallet();
 
@@ -157,6 +160,7 @@ namespace cryptonote
     std::string m_wallet_file;
     std::string m_generate_new;
     std::string m_import_path;
+    std::string m_generate_from_keys;
 
     std::string m_electrum_seed;  // electrum-style seed parameter
 

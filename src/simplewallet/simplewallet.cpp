@@ -64,6 +64,7 @@ namespace
 {
   const command_line::arg_descriptor<std::string> arg_wallet_file = {"wallet-file", "Use wallet <arg>", ""};
   const command_line::arg_descriptor<std::string> arg_generate_new_wallet = {"generate-new-wallet", "Generate new wallet and save it to <arg> or <address>.wallet by default", ""};
+  const command_line::arg_descriptor<std::string> arg_generate_from_keys = {"generate-from-keys", "Generate new wallet from existing spend and view keys", ""};
   const command_line::arg_descriptor<std::string> arg_daemon_address = {"daemon-address", "Use daemon instance at <host>:<port>", ""};
   const command_line::arg_descriptor<std::string> arg_daemon_host = {"daemon-host", "Use daemon instance at host <arg> instead of localhost", ""};
   const command_line::arg_descriptor<std::string> arg_password = {"password", "Wallet password", "", true};
@@ -319,6 +320,92 @@ bool simple_wallet::ask_wallet_create_if_needed()
 bool simple_wallet::init(const boost::program_options::variables_map& vm)
 {
   handle_command_line(vm);
+  
+  if (!m_generate_from_keys.empty())
+  {
+      std::string m_wallet_file = m_generate_from_keys;
+      // parse address
+      std::string address_string = command_line::input_line("Standard address: ");
+      if (std::cin.eof())
+        return false;
+      if (address_string.empty()) {
+        fail_msg_writer() << "No data supplied, cancelled";
+        return false;
+      }
+      cryptonote::account_public_address address;
+      crypto::hash new_payment_id;
+      get_account_address_from_str(address, address_string);
+
+      // parse spend secret key
+      std::string spendkey_string = command_line::input_line("Secret spend key: ");
+      if (std::cin.eof())
+        return false;
+      if (spendkey_string.empty()) {
+        fail_msg_writer() << "No data supplied, cancelled";
+        return false;
+      }
+      cryptonote::blobdata spendkey_data;
+      if(!epee::string_tools::parse_hexstr_to_binbuff(spendkey_string, spendkey_data) || spendkey_data.size() != sizeof(crypto::secret_key))
+      {
+        fail_msg_writer() << "failed to parse spend key secret key";
+        return false;
+      }
+      crypto::secret_key spendkey = *reinterpret_cast<const crypto::secret_key*>(spendkey_data.data());
+
+      // parse view secret key
+      std::string viewkey_string = command_line::input_line("Secret view key: ");
+      if (std::cin.eof())
+        return false;
+      if (viewkey_string.empty()) {
+        fail_msg_writer() << "No data supplied, cancelled";
+        return false;
+      }
+      cryptonote::blobdata viewkey_data;
+      if(!epee::string_tools::parse_hexstr_to_binbuff(viewkey_string, viewkey_data) || viewkey_data.size() != sizeof(crypto::secret_key))
+      {
+        fail_msg_writer() << "failed to parse view key secret key";
+        return false;
+      }
+      crypto::secret_key viewkey = *reinterpret_cast<const crypto::secret_key*>(viewkey_data.data());
+
+      m_wallet_file=m_generate_from_keys;
+      
+      tools::password_container pwd_container;
+      if (command_line::has_arg(vm, arg_password))
+      {
+        pwd_container.password(command_line::get_arg(vm, arg_password));
+      }
+      else
+      {
+        bool r = pwd_container.read_password();
+        if (!r)
+        {
+          fail_msg_writer() << "failed to read wallet password";
+          return false;
+        }
+      }
+
+      // check the spend and view keys match the given address
+      crypto::public_key pkey;
+      if (!crypto::secret_key_to_public_key(spendkey, pkey)) {
+        fail_msg_writer() << "failed to verify spend key secret key";
+        return false;
+      }
+      if (address.m_spend_public_key != pkey) {
+        fail_msg_writer() << "spend key does not match standard address";
+        return false;
+      }
+      if (!crypto::secret_key_to_public_key(viewkey, pkey)) {
+        fail_msg_writer() << "failed to verify view key secret key";
+        return false;
+      }
+      if (address.m_view_public_key != pkey) {
+        fail_msg_writer() << "view key does not match standard address";
+        return false;
+      }
+      bool r = new_wallet_from_keys(m_wallet_file, pwd_container.password(), address, spendkey, viewkey);
+      CHECK_AND_ASSERT_MES(r, false, "account creation failed");
+  }
 
   if (m_feemult < 1 || m_feemult > 100)
   {
@@ -420,6 +507,7 @@ void simple_wallet::handle_command_line(const boost::program_options::variables_
   m_daemon_address                = command_line::get_arg(vm, arg_daemon_address);
   m_daemon_host                   = command_line::get_arg(vm, arg_daemon_host);
   m_daemon_port                   = command_line::get_arg(vm, arg_daemon_port);
+  m_generate_from_keys            = command_line::get_arg(vm, arg_generate_from_keys);
   m_electrum_seed                 = command_line::get_arg(vm, arg_electrum_seed);
   m_restore_deterministic_wallet  = command_line::get_arg(vm, arg_restore_deterministic_wallet);
   m_non_deterministic             = command_line::get_arg(vm, arg_non_deterministic);
@@ -435,6 +523,34 @@ bool simple_wallet::try_connect_to_daemon()
       "Please, make sure that daemon is running or restart the wallet with correct daemon address.";
     return false;
   }
+  return true;
+}
+
+//----------------------------------------------------------------------------------------------------
+bool simple_wallet::new_wallet_from_keys(const std::string& wallet_file, const std::string& password, const cryptonote::account_public_address& address, const crypto::secret_key& spendkey, const crypto::secret_key& viewkey)
+{
+  m_wallet_file = wallet_file;
+
+  m_wallet.reset(new tools::wallet2());
+  m_wallet->callback(this);
+  
+  if (!m_wallet)
+  {
+    return false;
+  }
+
+  try
+  {
+    m_wallet->generate_wallet_from_keys(m_wallet_file, password, address, spendkey, viewkey);
+    message_writer(epee::log_space::console_color_white, true) << "Generated new wallet: "
+      << m_wallet->get_account().get_public_address_str();
+  }
+  catch (const std::exception& e)
+  {
+    fail_msg_writer() << "failed to generate new wallet: " << e.what();
+    return false;
+  }
+
   return true;
 }
 
@@ -486,6 +602,7 @@ bool simple_wallet::new_wallet(const string &wallet_file, const std::string& pas
 
   return true;
 }
+
 //----------------------------------------------------------------------------------------------------
 bool simple_wallet::open_wallet(const string &wallet_file, const std::string& password)
 {
@@ -1082,6 +1199,7 @@ int main(int argc, char* argv[])
   po::options_description desc_params("Wallet options");
   command_line::add_arg(desc_params, arg_wallet_file);
   command_line::add_arg(desc_params, arg_generate_new_wallet);
+  command_line::add_arg(desc_params, arg_generate_from_keys);
   command_line::add_arg(desc_params, arg_password);
   command_line::add_arg(desc_params, arg_feemult);
   command_line::add_arg(desc_params, arg_daemon_address);

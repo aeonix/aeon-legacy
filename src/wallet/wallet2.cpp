@@ -477,6 +477,9 @@ void wallet2::load_keys(const std::string& keys_file_name, const std::string& pa
   r = r && verify_keys(keys.m_spend_secret_key, keys.m_account_address.m_spend_public_key);
   THROW_WALLET_EXCEPTION_IF(!r, error::invalid_password);
 }
+
+
+
 //----------------------------------------------------------------------------------------------------
 crypto::secret_key wallet2::generate(const std::string& wallet_, const std::string& password, const crypto::secret_key& recovery_param, bool recover, bool two_random)
 {
@@ -500,6 +503,39 @@ crypto::secret_key wallet2::generate(const std::string& wallet_, const std::stri
   store();
   return retval;
 }
+
+/*!
+* \brief Creates a wallet from a public address and a spend/view secret key pair.
+* \param  wallet_        Name of wallet file
+* \param  password       Password of wallet file
+* \param  spendkey       spend secret key
+* \param  viewkey        view secret key
+*/
+void wallet2::generate_wallet_from_keys(const std::string& wallet_, const std::string& password,
+  const cryptonote::account_public_address &account_public_address,
+  const crypto::secret_key& spendkey, const crypto::secret_key& viewkey)
+{
+  clear();
+  prepare_file_names(wallet_);
+
+  boost::system::error_code ignored_ec;
+  THROW_WALLET_EXCEPTION_IF(boost::filesystem::exists(m_wallet_file, ignored_ec), error::file_exists, m_wallet_file);
+  THROW_WALLET_EXCEPTION_IF(boost::filesystem::exists(m_keys_file,   ignored_ec), error::file_exists, m_keys_file);
+
+  m_account.create_from_keys(account_public_address, spendkey, viewkey);
+  m_account_public_address = account_public_address;
+
+  bool r = store_keys(m_keys_file, password);
+  THROW_WALLET_EXCEPTION_IF(!r, error::file_save_error, m_keys_file);
+
+  r = file_io_utils::save_string_to_file(m_wallet_file + ".address.txt", m_account.get_public_address_str());
+  if(!r) LOG_PRINT_RED_L0("String with address text not saved");
+
+
+  store();
+}
+
+
 //----------------------------------------------------------------------------------------------------
 void wallet2::wallet_exists(const std::string& file_path, bool& keys_file_exists, bool& wallet_file_exists)
 {

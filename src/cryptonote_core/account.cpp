@@ -87,6 +87,26 @@ DISABLE_VS_WARNINGS(4244 4345)
     }
     return first;
   }
+  
+  void account_base::create_from_keys(const cryptonote::account_public_address& address, const crypto::secret_key& spendkey, const crypto::secret_key& viewkey)
+  {
+    m_keys.m_account_address = address;
+    m_keys.m_spend_secret_key = spendkey;
+    m_keys.m_view_secret_key = viewkey;
+
+    struct tm timestamp = {0};
+    timestamp.tm_year = 2014 - 1900;  // year 2014
+    timestamp.tm_mon = 4 - 1;  // month april
+    timestamp.tm_mday = 15;  // 15th of april
+    timestamp.tm_hour = 0;
+    timestamp.tm_min = 0;
+    timestamp.tm_sec = 0;
+
+    m_creation_timestamp = mktime(&timestamp);
+    if (m_creation_timestamp == (uint64_t)-1) // failure
+      m_creation_timestamp = 0; // lowest value
+  }
+
   //-----------------------------------------------------------------
   const account_keys& account_base::get_keys() const
   {

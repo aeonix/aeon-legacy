@@ -133,6 +133,7 @@ namespace tools
     };
 
     crypto::secret_key generate(const std::string& wallet, const std::string& password, const crypto::secret_key& recovery_param = crypto::secret_key(), bool recover = false, bool two_random = false);
+    void generate_wallet_from_keys(const std::string& wallet_, const std::string& password, const cryptonote::account_public_address &account_public_address, const crypto::secret_key& spendkey, const crypto::secret_key& viewkey);
     void load(const std::string& wallet, const std::string& password);
     void store();
     cryptonote::account_base& get_account(){return m_account;}
